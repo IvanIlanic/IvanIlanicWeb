@@ -31,19 +31,19 @@ export const diving = {
 export const divePhotos: DivePhoto[] = [
   {
     id: "01",
-    src: null,
+    src: "/images/Dive1.jpg",
     alt: "Scuba diving, photograph 1",
     caption: "Below the surface",
   },
   {
     id: "02",
-    src: null,
+    src: "/images/Dive2.jpg",
     alt: "Scuba diving, photograph 2",
     caption: "A different kind of quiet",
   },
   {
     id: "03",
-    src: null,
+    src: "/images/Dive3.jpg",
     alt: "Scuba diving, photograph 3",
     caption: "More to discover",
   },
