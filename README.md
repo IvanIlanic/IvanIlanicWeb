@@ -70,3 +70,9 @@ Until paths are supplied, the section renders intentional underwater-themed plac
 The diving photos appear as cream paper prints with tilted resting angles, paper edges, tape, and soft shadows. Mouse movement adds spring-smoothed CSS 3D rotation and lift; touch gestures remain still, and reduced motion immediately disables interactive tilt. No WebGL dependency is needed. Click or keyboard-activate a print to view the uncropped photo; use left/right arrows to browse and Escape to close. Focus returns to the print you opened.
 
 The print gallery lives in `src/components/diving-photo-gallery.tsx`, with motion behavior in `src/hooks/use-photo-tilt.ts`. Photos and captions remain in `src/data/diving.ts`.
+
+## Snowboarding section
+
+`src/data/snowboarding.ts` contains the story, current skills, favorite terrain, and instructor ambition. The section describes snowboarding being financially out of reach in childhood, loving it now, frontside/backside 180s, butter 360s, switch riding, jumps, powder, and black runs. Becoming an instructor is presented as a goal for the coming years, not a current qualification.
+
+A winter-themed illustration occupies the personal-photo slot until a photo is supplied. To add one, place your image in `public/images/` and change `snowboarding.photo.src` from `null` to a public path such as `"/images/snowboarding-01.jpg"`; update its `alt` and caption to match. The section component is `src/components/snowboarding-section.tsx`.
