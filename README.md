@@ -54,3 +54,15 @@ Next steps: replace samples with personal photos, approve the biography, add a r
 4. Landscape JPEG or WebP files around 2000–3000 pixels wide work well for the fullscreen hero. Use new filenames when replacing photos to avoid a browser serving an older optimized image.
 
 If development styles or motion appear stale after pulling an update, stop the server with Ctrl+C, run `git pull origin main`, run `npm ci` if dependencies changed, then start `npm run dev` again and refresh the browser. Mouse parallax respects your system's reduced-motion setting, so it stays still when reduced motion is enabled.
+
+## Scuba diving section
+
+`src/data/diving.ts` holds the story, certification progression, and three photo records. Open Water Diver and Advanced Open Water Diver are marked completed; Divemaster is a summer goal, not an earned qualification. No certification agency, dive counts, or dates are assumed.
+
+To add the three photos:
+
+1. Put `diving-01.jpg`, `diving-02.jpg`, and `diving-03.jpg` in `public/images/`.
+2. In `src/data/diving.ts`, replace each photo's `src: null` with its path, e.g. `src: "/images/diving-01.jpg"`.
+3. Update each `alt` to describe your actual photograph and edit its caption if needed.
+
+Until paths are supplied, the section renders intentional underwater-themed placeholders, with no requests for missing images. The photo layout and lazy-loaded Next.js images adapt to desktop and mobile screens.

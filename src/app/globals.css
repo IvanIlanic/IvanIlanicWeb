@@ -418,6 +418,207 @@ em {
   writing-mode: vertical-rl;
   font-size: 8px;
 }
+.diving {
+  --dive-accent: #9dcfda;
+  background:
+    radial-gradient(ellipse at 10% 0%, #26687924, transparent 55%), #09171d;
+  border-block: 1px solid #9dcfda20;
+}
+.diving-heading h2 em {
+  color: var(--dive-accent);
+}
+.diving-heading > p {
+  color: #a8bdc4;
+}
+.diving-story {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7vw;
+}
+.diving-story p {
+  font-size: 14px;
+  line-height: 1.95;
+  color: #b2c1c7;
+}
+.diving-story > div > p + p {
+  margin-top: 22px;
+}
+.diving-story .diving-lead {
+  color: #e2eaed;
+  font-size: clamp(20px, 2vw, 29px);
+  line-height: 1.65;
+  letter-spacing: -0.025em;
+}
+.diving-photos {
+  display: grid;
+  grid-template-columns: 1.05fr 0.85fr 1fr;
+  gap: 28px;
+  align-items: start;
+  margin: 65px 0 75px;
+}
+.diving-frame figure {
+  margin: 0;
+}
+.diving-frame-02 {
+  margin-top: 90px;
+}
+.diving-frame-03 {
+  margin-top: 35px;
+}
+.diving-photo-media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 0.84;
+  background: #102b36;
+}
+.diving-frame-02 .diving-photo-media {
+  aspect-ratio: 0.78;
+}
+.diving-frame-03 .diving-photo-media {
+  aspect-ratio: 0.94;
+}
+.diving-photo-media img {
+  object-fit: cover;
+}
+.diving-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 22px;
+  color: #bdd8df;
+  background:
+    linear-gradient(155deg, #39778a30, transparent 55%),
+    radial-gradient(ellipse at 70% 10%, #35687940, transparent 65%),
+    linear-gradient(#102d39, #06131b);
+}
+.diving-placeholder::before,
+.diving-placeholder::after {
+  content: "";
+  position: absolute;
+  width: 80%;
+  aspect-ratio: 1;
+  border: 1px solid #9dcfda18;
+  border-radius: 50%;
+  top: 30%;
+  left: 10%;
+}
+.diving-placeholder::after {
+  width: 50%;
+  left: 25%;
+  top: 42%;
+}
+.diving-placeholder .eyebrow {
+  font-size: 8px;
+  letter-spacing: 0.16em;
+}
+.diving-frame figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+  padding-top: 17px;
+  font-size: 12px;
+}
+.diving-frame figcaption .eyebrow {
+  color: var(--dive-accent);
+  font-size: 8px;
+}
+.diving-progression > .eyebrow {
+  color: var(--dive-accent);
+}
+.diving-qualifications {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+  list-style: none;
+  margin: 25px 0 0;
+  padding: 0;
+}
+.diving-qualifications li {
+  border-top: 1px solid #9dcfda40;
+  padding-top: 22px;
+}
+.diving-qualifications .is-next {
+  border-top-style: dashed;
+}
+.diving-qualifications > li > .eyebrow {
+  color: #a8bdc4;
+}
+.diving-qualifications h3 {
+  font-size: clamp(18px, 1.8vw, 26px);
+  letter-spacing: -0.025em;
+  line-height: 1.4;
+  margin: 16px 0 14px;
+}
+.diving-qualifications p {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--dive-accent);
+  font-size: 11px;
+}
+.diving-status-dot {
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: currentColor;
+}
+.is-next .diving-status-dot {
+  background: transparent;
+  border: 1px solid currentColor;
+}
+@media (max-width: 900px) {
+  .diving-photos {
+    gap: 18px;
+  }
+  .diving-frame figcaption {
+    font-size: 10px;
+  }
+}
+@media (max-width: 600px) {
+  .diving-story {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .diving-story p {
+    font-size: 13px;
+  }
+  .diving-photos {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin: 38px 0 45px;
+  }
+  .diving-frame-02,
+  .diving-frame-03 {
+    margin: 0;
+  }
+  .diving-frame-02 {
+    padding-left: 30px;
+  }
+  .diving-frame-03 {
+    padding-right: 30px;
+  }
+  .diving-photo-media,
+  .diving-frame-02 .diving-photo-media,
+  .diving-frame-03 .diving-photo-media {
+    aspect-ratio: 1.2;
+  }
+  .diving-frame figcaption {
+    font-size: 12px;
+  }
+  .diving-qualifications {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .diving-qualifications h3 {
+    font-size: 22px;
+    margin-top: 12px;
+  }
+}
 .journal {
   border-bottom: 1px solid var(--line);
 }

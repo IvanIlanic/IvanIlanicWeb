@@ -4,6 +4,7 @@ import { Reveal } from "@/components/reveal";
 import { Gallery } from "@/components/gallery";
 import { Arrow } from "@/components/icons";
 import { profile } from "@/data/profile";
+import { DivingSection } from "@/components/diving-section";
 
 export default function Home() {
   return (
@@ -124,6 +125,8 @@ export default function Home() {
           </span>
         </section>
 
+        <DivingSection />
+
         <section
           id="journal"
           className="journal section-pad"
@@ -158,7 +161,7 @@ export default function Home() {
           aria-labelledby="projects-title"
         >
           <div className="section-label">
-            <span className="eyebrow">04 / IDEAS INTO EXISTENCE</span>
+            <span className="eyebrow">05 / IDEAS INTO EXISTENCE</span>
             <span className="eyebrow">CODE & CREATIVE EXPERIMENTS</span>
           </div>
           <Reveal className="section-heading">
@@ -234,7 +237,7 @@ export default function Home() {
           aria-labelledby="contact-title"
         >
           <div className="section-label">
-            <span className="eyebrow">05 / THE NEXT CHAPTER</span>
+            <span className="eyebrow">06 / THE NEXT CHAPTER</span>
             <span className="eyebrow">
               <i className="status-dot" /> STARTS WITH A CONVERSATION
             </span>
