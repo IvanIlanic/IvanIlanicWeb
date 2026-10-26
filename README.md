@@ -1,6 +1,6 @@
 # Ivan Ilanić — personal portfolio
 
-A cinematic first homepage built with Next.js App Router, React, TypeScript, Tailwind CSS v4, and Motion for React. Includes an animated landscape hero, editorial about section, filterable photography gallery with an accessible lightbox, travel journal preview, project disclosure, and contact section.
+A cinematic first homepage built with Next.js App Router, React, TypeScript, Tailwind CSS v4, and Motion for React. Includes a monochrome landscape hero with image-filled typography and a manual three-scene selector, editorial about section, filterable photography gallery with an accessible lightbox, travel journal preview, project disclosure, and contact section.
 
 ## Develop
 
@@ -28,7 +28,7 @@ Browser checks for this iteration: gallery filtering; open/close lightbox; previ
 ## Make it yours
 
 - `src/app/page.tsx`: section composition and draft biography/contact copy.
-- `src/components/`: hero, responsive navigation, gallery, shared entrance animation, and icons.
+- `src/components/`: interactive landscape hero, responsive navigation, gallery, shared entrance animation, and icons. The hero scene records live alongside the hero component.
 - `src/data/portfolio.ts`: typed photograph records, captions, alternative text, categories, and credits.
 - `src/app/globals.css`: Tailwind entry point, shared design tokens, editorial layouts, breakpoints, and reduced-motion styles.
 - `src/app/layout.tsx`: local fonts and page metadata.
@@ -38,7 +38,7 @@ The photographs are design samples, **not Ivan's own work**. Biography copy is a
 
 ## Why this structure?
 
-The page stays a Server Component. Only interactions and animated reveals use client components, limiting browser JavaScript. `next/image` supplies responsive optimized images; the hero is preloaded and other photography is lazy-loaded. Local fonts avoid build-time network dependencies. Native `<dialog>` provides focus containment and Escape behavior, with explicit focus restoration and scroll locking. Native `<details>` handles project disclosure without additional JavaScript.
+The page stays a Server Component. Only interactions and animated reveals use client components, limiting browser JavaScript. The hero has three manually selected scenes, with no autoplay, canvas, or additional animation dependencies. CSS clips a photographic texture into the oversized name, with a solid-text fallback. The palette is charcoal and silver with restrained blush accents. `next/image` supplies responsive optimized images; the hero is preloaded and other photography is lazy-loaded. Local fonts avoid build-time network dependencies. Native `<dialog>` provides focus containment and Escape behavior, with explicit focus restoration and scroll locking. Native `<details>` handles project disclosure without additional JavaScript.
 
 Motion animates transforms and opacity once as content enters view. The CSS hero entrance and anchor scrolling respect reduced-motion preferences. GSAP, Lenis, and React Three Fiber are intentionally deferred until a specific interaction calls for them.
 
