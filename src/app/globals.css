@@ -161,6 +161,48 @@ em {
   margin-bottom: 28px;
   color: #aaa;
 }
+.about-bottom .profile-lead {
+  margin-top: 22px;
+  font-size: 21px;
+  line-height: 1.75;
+  letter-spacing: -0.025em;
+  color: var(--paper);
+}
+.profile-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(24px, 5vw, 76px);
+  margin-top: 60px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+.profile-pillars .eyebrow {
+  color: var(--accent);
+}
+.profile-pillars h3 {
+  font-size: 23px;
+  letter-spacing: -0.025em;
+  margin: 16px 0 14px;
+}
+.profile-pillars p {
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--muted);
+}
+@media (max-width: 600px) {
+  .about-bottom .profile-lead {
+    font-size: 18px;
+  }
+  .profile-pillars {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-top: 36px;
+    padding-top: 28px;
+  }
+  .profile-pillars h3 {
+    margin: 10px 0;
+  }
+}
 .dark-link {
   border-color: #ffffff50;
 }

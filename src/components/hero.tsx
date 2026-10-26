@@ -7,6 +7,7 @@ import { usePointerParallax } from "@/hooks/use-pointer-parallax";
 import { Arrow } from "./icons";
 import { Reveal } from "./reveal";
 import { Navigation } from "./navigation";
+import { profile } from "@/data/profile";
 
 // Deliberately manual: no autoplay or continuous animation in the background.
 const scenes = [
@@ -68,7 +69,9 @@ export function Hero() {
       <Navigation />
       <motion.div className="hero-center" style={parallax.foreground}>
         <Reveal>
-          <p className="eyebrow hero-kicker">CODE. CAMERA. CURIOSITY.</p>
+          <p className="eyebrow hero-kicker">
+            {profile.roles.join(". ").toUpperCase()}.
+          </p>
           <h1 id="hero-title" aria-label="Ivan Ilanić">
             <span className="hero-lettering" aria-hidden="true">
               IVAN
@@ -93,9 +96,9 @@ export function Hero() {
       </nav>
       <div className="hero-footer">
         <p className="hero-intro">
-          A developer’s mind.
+          Solving problems.
           <br />
-          An explorer’s eye.
+          Creating. Exploring.
         </p>
         <a
           href="#about"

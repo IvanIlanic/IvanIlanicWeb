@@ -3,6 +3,7 @@ import { Hero } from "@/components/hero";
 import { Reveal } from "@/components/reveal";
 import { Gallery } from "@/components/gallery";
 import { Arrow } from "@/components/icons";
+import { profile } from "@/data/profile";
 
 export default function Home() {
   return (
@@ -18,34 +19,43 @@ export default function Home() {
           aria-labelledby="about-title"
         >
           <div className="section-label">
-            <span className="eyebrow">01 / THE PERSON BEHIND THE PIXELS</span>
+            <span className="eyebrow">01 / A LITTLE ABOUT ME</span>
             <span className="asterisk" aria-hidden="true">
               ✳
             </span>
           </div>
           <Reveal>
             <h2 id="about-title" className="statement">
-              Some days, I write code.
+              I figure things out.
               <br />
-              Others, I chase the light.
+              I bring ideas to life.
               <br />
-              <em>Always, I stay curious.</em>
+              <em>I keep exploring.</em>
             </h2>
           </Reveal>
           <div className="about-bottom">
-            <span className="eyebrow">THINKER. MAKER. WANDERER.</span>
             <div>
-              <p>
-                I’m Ivan — a developer and visual storyteller drawn to the space
-                where technology meets the world outside. This is my corner of
-                the internet: a collection of things I make, places I go, and
-                moments worth keeping.
-              </p>
+              <span className="eyebrow">A FEW WORDS. A BIGGER PICTURE.</span>
+              <p className="profile-lead">{profile.introduction[0]}</p>
+            </div>
+            <div>
+              {profile.introduction.slice(1).map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
               <a href="#projects" className="text-link dark-link">
-                A look at what I’m building <Arrow />
+                See what I’m creating <Arrow />
               </a>
             </div>
           </div>
+          <Reveal className="profile-pillars">
+            {profile.pillars.map((pillar, index) => (
+              <article key={pillar.title}>
+                <span className="eyebrow">0{index + 1}</span>
+                <h3>{pillar.title}</h3>
+                <p>{pillar.description}</p>
+              </article>
+            ))}
+          </Reveal>
         </section>
 
         <section
@@ -158,9 +168,9 @@ export default function Home() {
               of <em>canvas.</em>
             </h2>
             <p>
-              Thoughtful interfaces.
+              Ideas worth trying.
               <br />
-              Curious experiments. Things that work.
+              Problems worth solving.
             </p>
           </Reveal>
           <details className="project">
@@ -241,9 +251,9 @@ export default function Home() {
           </Reveal>
           <div className="contact-bottom">
             <p>
-              Have an idea, a question,
+              Have a problem to solve,
               <br />
-              or a good story to share?
+              an idea to build, or a story to share?
             </p>
             <a
               href="https://github.com/IvanIlanic"

@@ -27,7 +27,8 @@ Browser checks for this iteration: gallery filtering; open/close lightbox; previ
 
 ## Make it yours
 
-- `src/app/page.tsx`: section composition and draft biography/contact copy.
+- `src/app/page.tsx`: section composition and contact copy.
+- `src/data/profile.ts`: editable profile roles, introduction, three personal themes, and metadata summary.
 - `src/components/`: interactive landscape hero, responsive navigation, gallery, shared entrance animation, and icons. The hero scene records live alongside the hero component.
 - `src/hooks/use-pointer-parallax.ts`: spring-smoothed, mouse-only layered movement with reduced-motion and touch safeguards.
 - `src/data/portfolio.ts`: typed photograph records, captions, alternative text, categories, and credits.
