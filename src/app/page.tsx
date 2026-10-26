@@ -6,6 +6,7 @@ import { Arrow } from "@/components/icons";
 import { profile } from "@/data/profile";
 import { DivingSection } from "@/components/diving-section";
 import { SnowboardingSection } from "@/components/snowboarding-section";
+import { ProjectsSection } from "@/components/projects-section";
 
 export default function Home() {
   return (
@@ -157,81 +158,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section
-          id="projects"
-          className="projects section-pad"
-          aria-labelledby="projects-title"
-        >
-          <div className="section-label">
-            <span className="eyebrow">06 / IDEAS INTO EXISTENCE</span>
-            <span className="eyebrow">CODE & CREATIVE EXPERIMENTS</span>
-          </div>
-          <Reveal className="section-heading">
-            <h2 id="projects-title">
-              A different kind
-              <br />
-              of <em>canvas.</em>
-            </h2>
-            <p>
-              Ideas worth trying.
-              <br />
-              Problems worth solving.
-            </p>
-          </Reveal>
-          <details className="project">
-            <summary>
-              <div className="project-art" aria-hidden="true">
-                <span className="orbit orbit-one" />
-                <span className="orbit orbit-two" />
-                <span className="orbit orbit-three" />
-                <span className="orbit-core" />
-                <span className="project-art-label eyebrow">
-                  THE PERSONAL UNIVERSE — 001
-                </span>
-              </div>
-              <div className="project-info">
-                <span className="eyebrow">IN THE MAKING / WEB EXPERIENCE</span>
-                <h3>
-                  This little corner
-                  <br />
-                  of the internet.
-                </h3>
-                <p>
-                  A home for code, photographs, and everything in between. Built
-                  one thoughtful detail at a time.
-                </p>
-                <div className="tags">
-                  <span>Next.js</span>
-                  <span>TypeScript</span>
-                  <span>Motion</span>
-                </div>
-                <span className="text-link">
-                  Behind the build{" "}
-                  <span className="project-plus" aria-hidden="true">
-                    +
-                  </span>
-                </span>
-              </div>
-            </summary>
-            <div className="project-details">
-              <h4>Designed to feel simple. Built to stay that way.</h4>
-              <p>
-                Next.js App Router keeps the page and its content on the server.
-                Small React components handle the gallery and navigation.
-                Tailwind CSS and shared design tokens shape the layout; Motion
-                adds subtle entrances with reduced-motion support.
-              </p>
-              <a
-                href="https://github.com/IvanIlanic/IvanIlanicWeb"
-                target="_blank"
-                rel="noreferrer"
-                className="text-link"
-              >
-                Explore the repository <Arrow />
-              </a>
-            </div>
-          </details>
-        </section>
+        <ProjectsSection />
 
         <section
           id="contact"

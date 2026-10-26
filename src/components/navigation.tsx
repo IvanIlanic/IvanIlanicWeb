@@ -9,7 +9,7 @@ const links = [
   ["Journeys", "#journeys"],
   ["Diving", "#diving"],
   ["Snowboarding", "#snowboarding"],
-  ["Projects", "#projects"],
+  ["Problems & projects", "#projects"],
   ["Contact", "#contact"],
 ];
 

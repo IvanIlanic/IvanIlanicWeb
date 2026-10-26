@@ -76,3 +76,15 @@ The print gallery lives in `src/components/diving-photo-gallery.tsx`, with motio
 `src/data/snowboarding.ts` contains the story, current skills, favorite terrain, and instructor ambition. The section describes snowboarding being financially out of reach in childhood, loving it now, frontside/backside 180s, butter 360s, switch riding, jumps, powder, and black runs. Becoming an instructor is presented as a goal for the coming years, not a current qualification.
 
 A winter-themed illustration occupies the personal-photo slot until a photo is supplied. To add one, place your image in `public/images/` and change `snowboarding.photo.src` from `null` to a public path such as `"/images/snowboarding-01.jpg"`; update its `alt` and caption to match. The section component is `src/components/snowboarding-section.tsx`.
+
+## Problems and projects
+
+`src/data/projects.ts` holds three problem/approach case studies: Beerluga, Defend the Flag, and small-business digitalization with Kazuni Nina as a concrete storefront example. `src/components/projects-section.tsx` renders the section. Project branding assets are copied from Ivan's public repositories; the artwork panels show project identity, not application screenshots. The cards avoid unverified adoption, performance, client, revenue, or research claims.
+
+Source material reviewed:
+
+- `IvanIlanic/beerluga`: README, `src/main.jsx`, package manifest, and the canonical website URL in `index.html`. Current source uses MapLibre, despite the older README mentioning Leaflet.
+- `IvanIlanic/defendTheFlag`: README, learning-model copy in `frontend/src/pages/Home.jsx`, frontend manifest, backend models, and practice-challenge directories.
+- `IvanIlanic/KazuniNina`: README and package manifest describing the storefront and request workflow. No production deployment, paid-client relationship, online payments, or commercial outcomes are claimed.
+
+The Defend the Flag paper was mentioned by Ivan but is not included in the public project repository. Its text and publication details have not been reviewed. `paperUrl` remains `null` until an actual public link is supplied; then a “Read the paper” link can appear. Paper-specific findings should be added only after reviewing the document. The Beerluga website URL comes from its source metadata; live availability was not established from this environment.
