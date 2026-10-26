@@ -3,8 +3,9 @@
 import { useEffect, useRef, type PointerEvent } from "react";
 import { useMotionValue, useSpring, useTransform } from "motion/react";
 
-const pointerQuery =
-  "(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)";
+// Use the actual event's pointerType, rather than the device's primary pointer.
+// Touch-capable computers can report a coarse pointer while using a mouse.
+const motionQuery = "(prefers-reduced-motion: no-preference)";
 
 /** Move compositor layers without re-rendering React on each pointer event. */
 export function usePointerParallax() {
@@ -13,13 +14,13 @@ export function usePointerParallax() {
   const pointerY = useMotionValue(0);
   const smoothX = useSpring(pointerX, { stiffness: 90, damping: 26 });
   const smoothY = useSpring(pointerY, { stiffness: 90, damping: 26 });
-  const backgroundX = useTransform(smoothX, [-1, 1], [32, -32]);
-  const backgroundY = useTransform(smoothY, [-1, 1], [16, -16]);
-  const foregroundX = useTransform(smoothX, [-1, 1], [-12, 12]);
-  const foregroundY = useTransform(smoothY, [-1, 1], [-6, 6]);
+  const backgroundX = useTransform(smoothX, [-1, 1], [72, -72]);
+  const backgroundY = useTransform(smoothY, [-1, 1], [28, -28]);
+  const foregroundX = useTransform(smoothX, [-1, 1], [-18, 18]);
+  const foregroundY = useTransform(smoothY, [-1, 1], [-8, 8]);
 
   useEffect(() => {
-    const query = window.matchMedia(pointerQuery);
+    const query = window.matchMedia(motionQuery);
     const updatePreference = () => {
       enabled.current = query.matches;
       if (!query.matches) {
