@@ -12,7 +12,7 @@ import { Navigation } from "./navigation";
 const scenes = [
   {
     label: "Peaks",
-    src: "/images/alpine.jpg",
+    src: "/images/IvanHero.jpg",
     alt: "Rocky mountain peaks reflected in an alpine lake",
     note: "THE HIGHER YOU GO, THE MORE YOU SEE.",
   },
