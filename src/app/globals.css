@@ -451,34 +451,143 @@ em {
 }
 .diving-photos {
   display: grid;
-  grid-template-columns: 1.05fr 0.85fr 1fr;
-  gap: 28px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(22px, 3vw, 48px);
   align-items: start;
-  margin: 65px 0 75px;
-}
-.diving-frame figure {
-  margin: 0;
+  margin: 105px 0 115px;
+  padding: 0 16px;
 }
 .diving-frame-02 {
-  margin-top: 90px;
+  margin-top: 85px;
 }
 .diving-frame-03 {
-  margin-top: 35px;
+  margin-top: 25px;
+}
+.polaroid-stage {
+  perspective: 1200px;
+}
+.polaroid-card {
+  position: relative;
+  margin: 0;
+  padding: 14px 14px 0;
+  background: linear-gradient(135deg, #faf6ec, #eae3d6);
+  border: 1px solid #fff9;
+  transform-style: preserve-3d;
+  box-shadow:
+    0 2px 2px #0004,
+    0 20px 35px #0007,
+    0 40px 65px #0004;
+}
+/* A thin paper edge and a translucent strip of tape give the prints weight. */
+.polaroid-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #c9c1b3;
+  transform: translateZ(-3px);
+  box-shadow: 1px 3px 0 #a9a194;
+}
+.polaroid-card::after {
+  content: "";
+  position: absolute;
+  top: -13px;
+  left: 37%;
+  width: 27%;
+  height: 27px;
+  background: linear-gradient(150deg, #e1d7c3bb, #d3c8b2a6);
+  border-inline: 1px solid #eee4ce50;
+  clip-path: polygon(0 5%, 98% 0, 100% 92%, 2% 100%);
+  transform: translateZ(4px) rotate(-7deg);
+  pointer-events: none;
+}
+.diving-frame-02 .polaroid-card::after {
+  transform: translateZ(4px) rotate(6deg);
+}
+.polaroid-open {
+  display: block;
+  width: 100%;
+  padding: 0;
+  background: none;
+  transform: translateZ(1px);
+}
+.polaroid-open:disabled {
+  cursor: default;
+}
+.polaroid-open:focus-visible {
+  outline-color: #254c5b;
+  outline-offset: 4px;
 }
 .diving-photo-media {
+  display: block;
   position: relative;
   overflow: hidden;
-  aspect-ratio: 0.84;
+  aspect-ratio: 1.03;
   background: #102b36;
-}
-.diving-frame-02 .diving-photo-media {
-  aspect-ratio: 0.78;
-}
-.diving-frame-03 .diving-photo-media {
-  aspect-ratio: 0.94;
 }
 .diving-photo-media img {
   object-fit: cover;
+}
+.diving-frame-02 .diving-photo-media img {
+  object-position: 50% 60%;
+}
+.polaroid-sheen {
+  position: absolute;
+  inset: -50%;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    #ffffff48 48%,
+    transparent 64%
+  );
+}
+.polaroid-expand {
+  position: absolute;
+  right: 9px;
+  bottom: 9px;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  color: #233c44;
+  background: #f7f1e6ed;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.polaroid-expand svg {
+  width: 13px;
+  height: 13px;
+}
+.polaroid-stage:hover .polaroid-expand,
+.polaroid-stage:focus-within .polaroid-expand {
+  opacity: 1;
+}
+.polaroid-card figcaption {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px 10px;
+  align-items: baseline;
+  padding: 20px 4px 22px;
+  color: #253a42;
+  transform: translateZ(3px);
+}
+.polaroid-caption {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(23px, 2.3vw, 34px);
+  line-height: 1.1;
+}
+.polaroid-index {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: #645e55;
+}
+.polaroid-note {
+  grid-column: 1 / -1;
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #645e55;
 }
 .diving-placeholder {
   position: absolute;
@@ -486,45 +595,28 @@ em {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow: hidden;
   padding: 22px;
   color: #bdd8df;
   background:
-    linear-gradient(155deg, #39778a30, transparent 55%),
-    radial-gradient(ellipse at 70% 10%, #35687940, transparent 65%),
+    radial-gradient(ellipse at 70% 10%, #35687960, transparent 65%),
     linear-gradient(#102d39, #06131b);
-}
-.diving-placeholder::before,
-.diving-placeholder::after {
-  content: "";
-  position: absolute;
-  width: 80%;
-  aspect-ratio: 1;
-  border: 1px solid #9dcfda18;
-  border-radius: 50%;
-  top: 30%;
-  left: 10%;
-}
-.diving-placeholder::after {
-  width: 50%;
-  left: 25%;
-  top: 42%;
 }
 .diving-placeholder .eyebrow {
   font-size: 8px;
   letter-spacing: 0.16em;
 }
-.diving-frame figcaption {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  align-items: baseline;
-  padding-top: 17px;
-  font-size: 12px;
+.dive-lightbox {
+  background: #09171d;
 }
-.diving-frame figcaption .eyebrow {
-  color: var(--dive-accent);
-  font-size: 8px;
+@media (hover: none) {
+  .polaroid-expand {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .polaroid-sheen {
+    display: none;
+  }
 }
 .diving-progression > .eyebrow {
   color: var(--dive-accent);
@@ -571,14 +663,6 @@ em {
   background: transparent;
   border: 1px solid currentColor;
 }
-@media (max-width: 900px) {
-  .diving-photos {
-    gap: 18px;
-  }
-  .diving-frame figcaption {
-    font-size: 10px;
-  }
-}
 @media (max-width: 600px) {
   .diving-story {
     grid-template-columns: 1fr;
@@ -588,27 +672,28 @@ em {
     font-size: 13px;
   }
   .diving-photos {
-    grid-template-columns: 1fr;
-    gap: 32px;
-    margin: 38px 0 45px;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: 55px;
+    margin: 65px 0 75px;
+    padding: 0 10px;
+  }
+  .diving-frame {
+    width: 100%;
+    max-width: 340px;
   }
   .diving-frame-02,
   .diving-frame-03 {
     margin: 0;
   }
-  .diving-frame-02 {
-    padding-left: 30px;
+  .polaroid-card {
+    padding: 12px 12px 0;
   }
-  .diving-frame-03 {
-    padding-right: 30px;
+  .polaroid-card figcaption {
+    padding: 18px 2px 22px;
   }
-  .diving-photo-media,
-  .diving-frame-02 .diving-photo-media,
-  .diving-frame-03 .diving-photo-media {
-    aspect-ratio: 1.2;
-  }
-  .diving-frame figcaption {
-    font-size: 12px;
+  .polaroid-caption {
+    font-size: 27px;
   }
   .diving-qualifications {
     grid-template-columns: 1fr;

@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { diving, divePhotos } from "@/data/diving";
 import { Reveal } from "./reveal";
+import { DivingPhotoGallery } from "./diving-photo-gallery";
 
 export function DivingSection() {
   return (
@@ -36,36 +36,7 @@ export function DivingSection() {
         </div>
       </div>
 
-      <div className="diving-photos" aria-label="Dive photographs">
-        {divePhotos.map((photo) => (
-          <Reveal
-            key={photo.id}
-            className={`diving-frame diving-frame-${photo.id}`}
-          >
-            <figure>
-              <div className="diving-photo-media">
-                {photo.src ? (
-                  <Image
-                    src={photo.src}
-                    alt={photo.alt}
-                    fill
-                    sizes="(max-width: 600px) 100vw, 36vw"
-                  />
-                ) : (
-                  <div className="diving-placeholder">
-                    <span className="eyebrow">FRAME {photo.id}</span>
-                    <span className="eyebrow">PHOTOGRAPH TO COME</span>
-                  </div>
-                )}
-              </div>
-              <figcaption>
-                <span>{photo.caption}</span>
-                <span className="eyebrow">{photo.id}</span>
-              </figcaption>
-            </figure>
-          </Reveal>
-        ))}
-      </div>
+      <DivingPhotoGallery photos={divePhotos} />
 
       <div className="diving-progression">
         <span className="eyebrow">THE JOURNEY SO FAR</span>

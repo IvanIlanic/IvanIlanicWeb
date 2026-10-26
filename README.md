@@ -66,3 +66,7 @@ To add the three photos:
 3. Update each `alt` to describe your actual photograph and edit its caption if needed.
 
 Until paths are supplied, the section renders intentional underwater-themed placeholders, with no requests for missing images. The photo layout and lazy-loaded Next.js images adapt to desktop and mobile screens.
+
+The diving photos appear as cream paper prints with tilted resting angles, paper edges, tape, and soft shadows. Mouse movement adds spring-smoothed CSS 3D rotation and lift; touch gestures remain still, and reduced motion immediately disables interactive tilt. No WebGL dependency is needed. Click or keyboard-activate a print to view the uncropped photo; use left/right arrows to browse and Escape to close. Focus returns to the print you opened.
+
+The print gallery lives in `src/components/diving-photo-gallery.tsx`, with motion behavior in `src/hooks/use-photo-tilt.ts`. Photos and captions remain in `src/data/diving.ts`.

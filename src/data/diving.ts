@@ -32,19 +32,19 @@ export const divePhotos: DivePhoto[] = [
   {
     id: "01",
     src: "/images/Dive1.jpg",
-    alt: "Scuba diving, photograph 1",
+    alt: "Two scuba divers in masks and regulators posing together underwater",
     caption: "Below the surface",
   },
   {
     id: "02",
     src: "/images/Dive2.jpg",
-    alt: "Scuba diving, photograph 2",
+    alt: "A group of scuba divers hovering above a submerged structure in blue-green water",
     caption: "A different kind of quiet",
   },
   {
     id: "03",
     src: "/images/Dive3.jpg",
-    alt: "Scuba diving, photograph 3",
+    alt: "A diver in scuba equipment making a playful hand gesture outdoors",
     caption: "More to discover",
   },
 ];
