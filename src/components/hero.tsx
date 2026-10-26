@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
 import { useState, type CSSProperties } from "react";
 import { motion } from "motion/react";
 import { usePointerParallax } from "@/hooks/use-pointer-parallax";
@@ -11,10 +11,10 @@ import { Navigation } from "./navigation";
 // Deliberately manual: no autoplay or continuous animation in the background.
 const scenes = [
   {
-    label: "Peaks",
+    label: "Dusk",
     src: "/images/IvanHero.jpg",
-    alt: "Rocky mountain peaks reflected in an alpine lake",
-    note: "THE HIGHER YOU GO, THE MORE YOU SEE.",
+    alt: "A person silhouetted against a deep blue sky and an orange sunset horizon",
+    note: "CHASING THE LAST LIGHT.",
   },
   {
     label: "Tides",
@@ -34,6 +34,14 @@ export function Hero() {
   const [active, setActive] = useState(0);
   const parallax = usePointerParallax();
   const scene = scenes[active];
+  // Reuse Next's optimized image route for the lettering instead of fetching
+  // the full-resolution original a second time as a CSS background.
+  const texture = getImageProps({
+    src: scene.src,
+    alt: "",
+    width: 960,
+    height: 640,
+  }).props.src;
 
   return (
     <section
@@ -42,7 +50,7 @@ export function Hero() {
       id="home"
       className="hero"
       aria-labelledby="hero-title"
-      style={{ "--scene-image": `url("${scene.src}")` } as CSSProperties}
+      style={{ "--scene-image": `url("${texture}")` } as CSSProperties}
     >
       <motion.div className="hero-parallax" style={parallax.background}>
         <Image
@@ -71,7 +79,7 @@ export function Hero() {
           </h1>
         </Reveal>
       </motion.div>
-      <nav className="scene-nav" aria-label="Choose a landscape">
+      <nav className="scene-nav" aria-label="Choose a hero scene">
         {scenes.map((item, index) => (
           <button
             key={item.label}

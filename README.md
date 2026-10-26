@@ -1,6 +1,6 @@
 # Ivan Ilanić — personal portfolio
 
-A cinematic first homepage built with Next.js App Router, React, TypeScript, Tailwind CSS v4, and Motion for React. Includes a monochrome landscape hero with image-filled typography and a manual three-scene selector, editorial about section, filterable photography gallery with an accessible lightbox, travel journal preview, project disclosure, and contact section.
+A cinematic first homepage built with Next.js App Router, React, TypeScript, Tailwind CSS v4, and Motion for React. Includes a full-color photographic hero with image-filled typography and a manual three-scene selector, editorial about section, filterable photography gallery with an accessible lightbox, travel journal preview, project disclosure, and contact section.
 
 ## Develop
 
@@ -35,11 +35,11 @@ Browser checks for this iteration: gallery filtering; open/close lightbox; previ
 - `src/app/layout.tsx`: local fonts and page metadata.
 - `public/images/`: sample photographs. Credits are visible on the website and in each gallery record. The reference project's MIT notice is retained here.
 
-The photographs are design samples, **not Ivan's own work**. Biography copy is a draft. No personal achievements, travel history, film releases, or contact email are invented; these sections can grow as real content is supplied. The GitHub profile is the initial contact destination.
+The default hero uses the photograph supplied by Ivan. The gallery photographs and alternate hero scenes are still credited design samples, **not Ivan's own work**. Biography copy is a draft. No personal achievements, travel history, film releases, or contact email are invented; these sections can grow as real content is supplied. The GitHub profile is the initial contact destination.
 
 ## Why this structure?
 
-The page stays a Server Component. Only interactions and animated reveals use client components, limiting browser JavaScript. The hero has three manually selected scenes, with no autoplay, canvas, or additional animation dependencies. CSS clips a photographic texture into the oversized name, with a solid-text fallback. The palette is charcoal and silver with restrained blush accents. `next/image` supplies responsive optimized images; the hero is preloaded and other photography is lazy-loaded. Local fonts avoid build-time network dependencies. Native `<dialog>` provides focus containment and Escape behavior, with explicit focus restoration and scroll locking. Native `<details>` handles project disclosure without additional JavaScript.
+The page stays a Server Component. Only interactions and animated reveals use client components, limiting browser JavaScript. The hero has three manually selected scenes, with no autoplay, canvas, or additional animation dependencies. CSS clips a photographic texture into the oversized name, with a solid-text fallback. The surrounding palette is charcoal and silver with restrained blush accents; hero photographs keep their natural color. The default Dusk scene uses IvanHero.jpg, supplied by Ivan. The image-filled title uses a lightly highlighted, optimized texture for legibility over darker photographs. `next/image` supplies responsive optimized images; the hero is preloaded and other photography is lazy-loaded. Local fonts avoid build-time network dependencies. Native `<dialog>` provides focus containment and Escape behavior, with explicit focus restoration and scroll locking. Native `<details>` handles project disclosure without additional JavaScript.
 
 Motion animates transforms and opacity once as content enters view. On mouse movement (including on touch-capable laptops), the hero landscape follows the cursor with a noticeable opposite offset while the title moves more gently in the other direction. Overscan hides image edges. Spring motion values keep pointer updates outside React rendering; movement resets on pointer exit or window blur and ignores touch gestures and turns off for reduced motion, including preference changes while the page is open. The CSS hero entrance and anchor scrolling respect reduced-motion preferences. GSAP, Lenis, and React Three Fiber are intentionally deferred until a specific interaction calls for them.
 
