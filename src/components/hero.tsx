@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { useState, type CSSProperties } from "react";
+import { motion } from "motion/react";
+import { usePointerParallax } from "@/hooks/use-pointer-parallax";
 import { Arrow } from "./icons";
 import { Reveal } from "./reveal";
 import { Navigation } from "./navigation";
@@ -30,28 +32,33 @@ const scenes = [
 
 export function Hero() {
   const [active, setActive] = useState(0);
+  const parallax = usePointerParallax();
   const scene = scenes[active];
 
   return (
     <section
+      onPointerMove={parallax.onPointerMove}
+      onPointerLeave={parallax.onPointerLeave}
       id="home"
       className="hero"
       aria-labelledby="hero-title"
       style={{ "--scene-image": `url("${scene.src}")` } as CSSProperties}
     >
-      <Image
-        key={scene.src}
-        src={scene.src}
-        alt={scene.alt}
-        fill
-        preload={active === 0}
-        loading={active === 0 ? undefined : "eager"}
-        sizes="(max-width: 600px) 150vh, 100vw"
-        className="hero-image"
-      />
+      <motion.div className="hero-parallax" style={parallax.background}>
+        <Image
+          key={scene.src}
+          src={scene.src}
+          alt={scene.alt}
+          fill
+          preload={active === 0}
+          loading={active === 0 ? undefined : "eager"}
+          sizes="(max-width: 600px) 150vh, 100vw"
+          className="hero-image"
+        />
+      </motion.div>
       <div className="hero-shade" />
       <Navigation />
-      <div className="hero-center">
+      <motion.div className="hero-center" style={parallax.foreground}>
         <Reveal>
           <p className="eyebrow hero-kicker">CODE. CAMERA. CURIOSITY.</p>
           <h1 id="hero-title" aria-label="Ivan Ilanić">
@@ -63,7 +70,7 @@ export function Hero() {
             </span>
           </h1>
         </Reveal>
-      </div>
+      </motion.div>
       <nav className="scene-nav" aria-label="Choose a landscape">
         {scenes.map((item, index) => (
           <button

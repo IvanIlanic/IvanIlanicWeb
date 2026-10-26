@@ -29,6 +29,7 @@ Browser checks for this iteration: gallery filtering; open/close lightbox; previ
 
 - `src/app/page.tsx`: section composition and draft biography/contact copy.
 - `src/components/`: interactive landscape hero, responsive navigation, gallery, shared entrance animation, and icons. The hero scene records live alongside the hero component.
+- `src/hooks/use-pointer-parallax.ts`: spring-smoothed, mouse-only layered movement with reduced-motion and touch safeguards.
 - `src/data/portfolio.ts`: typed photograph records, captions, alternative text, categories, and credits.
 - `src/app/globals.css`: Tailwind entry point, shared design tokens, editorial layouts, breakpoints, and reduced-motion styles.
 - `src/app/layout.tsx`: local fonts and page metadata.
@@ -40,6 +41,6 @@ The photographs are design samples, **not Ivan's own work**. Biography copy is a
 
 The page stays a Server Component. Only interactions and animated reveals use client components, limiting browser JavaScript. The hero has three manually selected scenes, with no autoplay, canvas, or additional animation dependencies. CSS clips a photographic texture into the oversized name, with a solid-text fallback. The palette is charcoal and silver with restrained blush accents. `next/image` supplies responsive optimized images; the hero is preloaded and other photography is lazy-loaded. Local fonts avoid build-time network dependencies. Native `<dialog>` provides focus containment and Escape behavior, with explicit focus restoration and scroll locking. Native `<details>` handles project disclosure without additional JavaScript.
 
-Motion animates transforms and opacity once as content enters view. The CSS hero entrance and anchor scrolling respect reduced-motion preferences. GSAP, Lenis, and React Three Fiber are intentionally deferred until a specific interaction calls for them.
+Motion animates transforms and opacity once as content enters view. On fine mouse pointers, the hero landscape follows the cursor with a small opposite offset while the title moves more gently in the other direction. Overscan hides image edges. Spring motion values keep pointer updates outside React rendering; movement resets on pointer exit or window blur and turns off for touch and reduced motion, including preference changes while the page is open. The CSS hero entrance and anchor scrolling respect reduced-motion preferences. GSAP, Lenis, and React Three Fiber are intentionally deferred until a specific interaction calls for them.
 
 Next steps: replace samples with personal photos, approve the biography, add a real contact destination, and expand the first travel or project story. Video, a full achievements timeline, and 3D effects are future iterations.
