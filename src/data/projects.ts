@@ -56,9 +56,9 @@ export const projects: ProjectCaseStudy[] = [
         href: "https://github.com/IvanIlanic/defendTheFlag",
       },
     ],
-    // Add the paper's actual public URL when supplied. Its text has not yet
-    // been reviewed, so no publication details or research findings are claimed.
-    paperUrl: null,
+    // Public paper link supplied by Ivan. Its text has not yet been reviewed,
+    // so no publication details or research findings are claimed.
+    paperUrl: "https://skemman.is/handle/1946/53559?locale=en",
   },
   {
     id: "03",
