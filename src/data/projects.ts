@@ -12,7 +12,7 @@ export type ProjectCaseStudy = {
   paperUrl?: string | null;
 };
 
-// Descriptions are grounded in the public project repositories. Do not add
+// Descriptions are grounded in the public repositories and the uploaded thesis. Do not add
 // performance, adoption, client, or academic claims without supporting details.
 export const projects: ProjectCaseStudy[] = [
   {
@@ -39,16 +39,16 @@ export const projects: ProjectCaseStudy[] = [
     id: "02",
     theme: "defend",
     title: "Defend the Flag",
-    category: "CYBERSECURITY / PROJECT & WRITING",
-    headline: "Learning security by building it.",
+    category: "DEFENSIVE CYBERSECURITY / BACHELOR’S THESIS",
+    headline: "Making cyber defense hands-on.",
     problem:
-      "Cybersecurity can feel abstract until you have a system to build, decisions to make, and a team depending on how well you understand it.",
+      "Beginners often encounter cybersecurity through offensive challenges. I wanted to make defensive skills—finding weaknesses, prioritizing fixes, and securing systems—engaging and approachable through practical learning.",
     approach:
-      "Defend the Flag is my cybersecurity project and paper. The public application explores hands-on, team-based learning, pairing a React interface with a Django API for profiles, teams, and game sessions.",
-    tags: ["React", "Django", "Team-based learning"],
+      "For my bachelor’s thesis at Reykjavík University in 2026, I designed and implemented narrative-led defensive challenges in local Ubuntu virtual machines. A cyberpunk terminal guide, progressive hints, and automated system checks help learners work through SQL injection and system-configuration problems.",
+    tags: ["Cyber defense", "Ubuntu VMs", "Game-based learning"],
     detail: {
-      title: "Connecting system design with practical challenges.",
-      body: "The project’s learning model asks teams to create and secure a system, then explore its weaknesses in a game setting. The repository includes game-master roles and practice challenges, making teamwork and application design part of the same exploration.",
+      title: "Designing a learning loop around defensive decisions.",
+      body: "A system-state checker tracks mitigations, while a narrative watcher delivers guidance and feedback. Defense in depth, prioritization, and immediate response shape the learning path. The thesis documents two challenge instances—SQL injection and Ubuntu administration—and a reusable template for designing more. Evaluating the challenges with learners from different backgrounds is a next step identified in the thesis. The accompanying React/Django project explores the separate team-based web model described in the paper.",
     },
     links: [
       {
@@ -56,8 +56,7 @@ export const projects: ProjectCaseStudy[] = [
         href: "https://github.com/IvanIlanic/defendTheFlag",
       },
     ],
-    // Public paper link supplied by Ivan. Its text has not yet been reviewed,
-    // so no publication details or research findings are claimed.
+    // Reviewed against Ivan's uploaded thesis, especially chapters 1, 3, 6–8.
     paperUrl: "https://skemman.is/handle/1946/53559?locale=en",
   },
   {
