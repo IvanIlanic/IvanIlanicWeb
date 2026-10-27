@@ -14,7 +14,7 @@ export function TravelSection() {
         <span className="eyebrow">THE TRAVEL JOURNAL</span>
         <span className="eyebrow">OPEN PLANS. OPEN POSSIBILITIES.</span>
       </div>
-      <div className="travel-layout">
+      <TravelPhotoBooth photos={travelPhotos}>
         <div className="travel-copy">
           <Reveal>
             <h2 id="travel-title">
@@ -36,10 +36,7 @@ export function TravelSection() {
             </a>
           </Reveal>
         </div>
-        <Reveal className="travel-booth">
-          <TravelPhotoBooth photos={travelPhotos} />
-        </Reveal>
-      </div>
+      </TravelPhotoBooth>
     </section>
   );
 }

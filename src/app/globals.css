@@ -667,19 +667,28 @@ em {
   font-size: 8px;
 }
 .travel-section {
+  overflow: clip;
   background:
     radial-gradient(ellipse at 80% 40%, #69775c12, transparent 65%), #191f1b;
   border-bottom: 1px solid var(--line);
 }
 .travel-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  align-items: center;
-  gap: 7vw;
-  margin-top: 55px;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: start;
+  gap: 55px clamp(16px, 2.5vw, 40px);
+  margin-top: 80px;
+}
+.travel-copy {
+  grid-column: 4 / span 6;
+  grid-row: 1;
+  align-self: center;
+  padding-block: 25px 45px;
+  position: relative;
+  z-index: 1;
 }
 .travel-copy h2 {
-  font-size: clamp(48px, 6vw, 96px);
+  font-size: clamp(48px, 4.8vw, 80px);
   line-height: 1.05;
   letter-spacing: -0.05em;
   margin-bottom: 40px;
@@ -694,7 +703,7 @@ em {
   margin-bottom: 25px;
 }
 .travel-copy .travel-lead {
-  font-size: clamp(20px, 2vw, 28px);
+  font-size: clamp(20px, 1.7vw, 25px);
   line-height: 1.7;
   letter-spacing: -0.025em;
   color: #e4e9df;
@@ -719,19 +728,61 @@ em {
   font-size: 9px;
   color: #b6c2ac;
 }
-.travel-booth {
-  min-width: 0;
-  padding: 30px 15px;
-}
 .travel-booth-stage {
-  max-width: 310px;
+  position: relative;
+  width: min(100%, 240px);
   margin-inline: auto;
   perspective: 1400px;
+  min-width: 0;
+}
+.travel-booth-stage:hover,
+.travel-booth-stage:focus-within {
+  z-index: 2;
+}
+.travel-booth-stage-1 {
+  --travel-angle: -8deg;
+  grid-column: 1 / span 3;
+  grid-row: 1;
+  margin-top: 65px;
+}
+.travel-booth-stage-2 {
+  --travel-angle: 7deg;
+  grid-column: 10 / span 3;
+  grid-row: 1;
+  margin-top: 180px;
+}
+.travel-booth-stage-3 {
+  --travel-angle: 5deg;
+  grid-column: 1 / span 3;
+  grid-row: 2;
+  margin-top: 20px;
+}
+.travel-booth-stage-4 {
+  --travel-angle: -6deg;
+  grid-column: 4 / span 3;
+  grid-row: 2;
+  margin-top: 135px;
+}
+.travel-booth-stage-5 {
+  --travel-angle: 8deg;
+  grid-column: 7 / span 3;
+  grid-row: 2;
+  margin-top: -35px;
+}
+.travel-booth-stage-6 {
+  --travel-angle: -4deg;
+  grid-column: 10 / span 3;
+  grid-row: 2;
+  margin-top: 95px;
+}
+.travel-float {
+  transform-style: preserve-3d;
 }
 .travel-strip {
   position: relative;
+  rotate: var(--travel-angle, 3deg);
   margin: 0;
-  padding: 20px 20px 0;
+  padding: 14px 14px 0;
   color: #3a3e34;
   background: linear-gradient(100deg, #f6f0e4, #e6ddcc);
   transform-style: preserve-3d;
@@ -803,47 +854,8 @@ em {
 .travel-shot-expand svg {
   width: 14px;
 }
-.travel-strip-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  max-width: 310px;
-  margin: 35px auto 0;
-  color: #c1cfb6;
-}
-.travel-strip-controls button {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  flex-shrink: 0;
-  border: 1px solid #c1cfb650;
-  border-radius: 50%;
-}
-.travel-strip-controls button:hover:not(:disabled) {
-  background: #c1cfb61a;
-}
-.travel-strip-controls button:disabled {
-  opacity: 0.4;
-}
-.travel-strip-controls svg {
-  width: 19px;
-}
-.travel-strip-controls [role="status"] {
-  display: grid;
-  gap: 7px;
-  text-align: center;
-  font-size: 9px;
-  letter-spacing: 0.08em;
-}
-.travel-strip-controls [role="status"] span:last-child {
-  font-size: 10px;
-  letter-spacing: 0;
-  color: #aeb9aa;
-}
 .travel-gallery-hint {
-  margin-top: 18px;
+  margin-top: 85px;
   font-size: 10px;
   text-align: center;
   color: #aeb9aa;
@@ -874,7 +886,7 @@ em {
 .travel-strip figcaption span:first-child {
   font-family: "Instrument Serif", Georgia, serif;
   font-style: italic;
-  font-size: 28px;
+  font-size: 25px;
   letter-spacing: -0.025em;
 }
 .travel-strip figcaption span:last-child {
@@ -882,25 +894,46 @@ em {
   letter-spacing: 0.14em;
   color: #655e50;
 }
-@media (max-width: 900px) {
-  .travel-layout {
-    gap: 30px;
-  }
-  .travel-booth {
-    padding-inline: 8px;
-  }
+@media (max-width: 1100px) {
   .travel-strip {
-    padding: 17px 17px 0;
+    rotate: -3deg;
   }
-  .travel-strip figcaption span:first-child {
-    font-size: 25px;
+  .travel-booth-stage:nth-of-type(odd) .travel-strip {
+    rotate: 3deg;
+  }
+  .travel-layout {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 60px 32px;
+  }
+  .travel-copy {
+    grid-column: 1 / -1;
+    max-width: 660px;
+    margin-inline: auto;
+    padding: 0 0 15px;
+  }
+  .travel-booth-stage {
+    grid-column: auto;
+    grid-row: auto;
+    margin-top: 0;
+  }
+  .travel-booth-stage-2,
+  .travel-booth-stage-5 {
+    margin-top: 95px;
+  }
+  .travel-booth-stage-3,
+  .travel-booth-stage-6 {
+    margin-top: 35px;
   }
 }
 @media (max-width: 600px) {
   .travel-layout {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 40px;
-    margin-top: 36px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 45px 24px;
+    margin: 45px 8px 0;
+  }
+  .travel-copy {
+    padding-bottom: 10px;
+    margin-inline: -8px;
   }
   .travel-copy h2 {
     font-size: 53px;
@@ -915,11 +948,66 @@ em {
   .travel-copy blockquote {
     font-size: 34px;
   }
-  .travel-booth {
-    padding: 15px 12px;
-  }
   .travel-booth-stage {
-    max-width: 290px;
+    margin-top: 0;
+  }
+  .travel-booth-stage:nth-of-type(odd) {
+    margin-top: 65px;
+  }
+  .travel-strip {
+    padding: 10px 10px 0;
+    rotate: -2deg;
+  }
+  .travel-booth-stage:nth-of-type(odd) .travel-strip {
+    rotate: 2deg;
+  }
+  .travel-strip-header {
+    gap: 5px;
+    font-size: 6px;
+    letter-spacing: 0.04em;
+    padding-bottom: 10px;
+  }
+  .travel-strip::before {
+    left: 2px;
+  }
+  .travel-strip::after {
+    right: 2px;
+  }
+  .travel-strip-frames {
+    gap: 11px;
+  }
+  .travel-shot p {
+    font-size: 13px;
+    min-height: 2.4em;
+  }
+  .travel-shot-expand {
+    width: 23px;
+    height: 23px;
+    top: 6px;
+    right: 6px;
+  }
+  .travel-shot-number {
+    right: 6px;
+    bottom: 6px;
+  }
+  .travel-strip figcaption {
+    padding: 15px 0 18px;
+  }
+  .travel-strip figcaption span:first-child {
+    font-size: 21px;
+  }
+  .travel-strip figcaption span:last-child {
+    line-height: 1.7;
+    letter-spacing: 0.04em;
+  }
+  .travel-gallery-hint {
+    margin-top: 60px;
+    line-height: 1.8;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .travel-float {
+    transform: none !important;
   }
 }
 .diving {
