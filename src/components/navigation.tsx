@@ -6,7 +6,7 @@ import { Arrow } from "./icons";
 const links = [
   ["About", "#about"],
   ["Selected work", "#work"],
-  ["Journeys", "#journeys"],
+  ["Travel", "#journeys"],
   ["Diving", "#diving"],
   ["Snowboarding", "#snowboarding"],
   ["Problems & projects", "#projects"],

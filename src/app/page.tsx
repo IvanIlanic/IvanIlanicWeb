@@ -7,6 +7,8 @@ import { profile } from "@/data/profile";
 import { DivingSection } from "@/components/diving-section";
 import { SnowboardingSection } from "@/components/snowboarding-section";
 import { ProjectsSection } from "@/components/projects-section";
+import { EditingStory } from "@/components/editing-story";
+import { TravelSection } from "@/components/travel-section";
 
 export default function Home() {
   return (
@@ -81,6 +83,9 @@ export default function Home() {
               <br />A reason to look a little closer.
             </p>
           </Reveal>
+          <a className="text-link editing-jump" href="#how-i-see">
+            How I think about an edit <Arrow direction="down" />
+          </a>
           <Gallery />
           <p className="sample-note">
             A visual direction in progress. These sample photographs will make
@@ -89,6 +94,7 @@ export default function Home() {
               Image credits <span aria-hidden="true">↗</span>
             </a>
           </p>
+          <EditingStory />
         </section>
 
         <section
@@ -113,9 +119,9 @@ export default function Home() {
                 <em>More outside.</em>
               </h2>
               <p>
-                For the detours, the unfamiliar places,
+                For unfamiliar places, new opportunities,
                 <br />
-                and the stories we bring back.
+                and a little room for the unexpected.
               </p>
             </Reveal>
             <a className="text-link" href="#journal">
@@ -127,36 +133,9 @@ export default function Home() {
           </span>
         </section>
 
+        <TravelSection />
         <DivingSection />
         <SnowboardingSection />
-
-        <section
-          id="journal"
-          className="journal section-pad"
-          aria-labelledby="journal-title"
-        >
-          <div className="section-label">
-            <span className="eyebrow">FIELD NOTES</span>
-            <span className="eyebrow">THE JOURNAL IS JUST BEGINNING</span>
-          </div>
-          <Reveal className="journal-heading">
-            <h2 id="journal-title">
-              Every chapter
-              <br />
-              starts <em>somewhere.</em>
-            </h2>
-            <p>
-              A space for journeys, personal milestones, and the lessons along
-              the way. The first stories are still being written.
-            </p>
-          </Reveal>
-          <div className="journal-line">
-            <span className="journal-dot" />
-            <span className="eyebrow">CHAPTER 01</span>
-            <span>Making a little space on the internet.</span>
-            <span className="eyebrow journal-status">YOU ARE HERE</span>
-          </div>
-        </section>
 
         <ProjectsSection />
 
