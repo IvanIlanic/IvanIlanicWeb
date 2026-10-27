@@ -771,42 +771,82 @@ em {
   gap: 13px;
 }
 .travel-shot-image {
+  display: block;
   position: relative;
-  aspect-ratio: 1.65;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  border: 0;
   overflow: hidden;
   background: #4b5d5b;
+  cursor: zoom-in;
+}
+.travel-shot-image:focus-visible {
+  outline: 3px solid #3b573f;
+  outline-offset: 4px;
 }
 .travel-shot-image img {
   object-fit: cover;
 }
-.travel-shot-placeholder {
+.travel-shot-expand {
   position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 15px;
-  color: #e5e9e0;
-  background: linear-gradient(140deg, #5b777e, #263e4a);
-}
-.travel-shot-02 .travel-shot-placeholder {
-  background: linear-gradient(150deg, #7e8c74, #364b42);
-}
-.travel-shot-03 .travel-shot-placeholder {
-  background: linear-gradient(150deg, #aa8d73, #615e57);
-}
-.travel-shot-04 .travel-shot-placeholder {
-  background: linear-gradient(150deg, #687d83, #333e4b);
-}
-.travel-shot-placeholder > span {
-  font-size: 7px;
-  letter-spacing: 0.12em;
-  align-self: flex-start;
-  padding: 3px 5px;
+  top: 10px;
+  right: 10px;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  color: #f6f0e4;
   background: #14201ccc;
+  border-radius: 50%;
 }
-.travel-shot-placeholder > .eyebrow {
-  font-size: 7px;
+.travel-shot-expand svg {
+  width: 14px;
+}
+.travel-strip-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  max-width: 310px;
+  margin: 35px auto 0;
+  color: #c1cfb6;
+}
+.travel-strip-controls button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border: 1px solid #c1cfb650;
+  border-radius: 50%;
+}
+.travel-strip-controls button:hover:not(:disabled) {
+  background: #c1cfb61a;
+}
+.travel-strip-controls button:disabled {
+  opacity: 0.4;
+}
+.travel-strip-controls svg {
+  width: 19px;
+}
+.travel-strip-controls [role="status"] {
+  display: grid;
+  gap: 7px;
+  text-align: center;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+.travel-strip-controls [role="status"] span:last-child {
+  font-size: 10px;
+  letter-spacing: 0;
+  color: #aeb9aa;
+}
+.travel-gallery-hint {
+  margin-top: 18px;
+  font-size: 10px;
+  text-align: center;
+  color: #aeb9aa;
 }
 .travel-shot-number {
   position: absolute;
