@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Kalam";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./fonts/kalam-latin-700-normal.woff2") format("woff2");
+}
+
 @theme inline {
   --color-background: #111111;
   --color-foreground: #e8e8e8;

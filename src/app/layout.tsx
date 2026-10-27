@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { profile } from "@/data/profile";
 import "@fontsource-variable/manrope";
 import "@fontsource/instrument-serif/latin-400-italic.css";
-import "@fontsource/kalam/latin-700.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
