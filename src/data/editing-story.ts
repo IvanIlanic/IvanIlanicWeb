@@ -1,11 +1,11 @@
 export const editingStory = {
   image: {
-    // Replace with the full-resolution source photo when it is available.
+    // Keep the same framing when replacing this image, or realign the masks below.
     src: "/images/Vehicle.jpg",
     alt: "A blue Icelandic rescue vehicle with large tires beneath red rescue flags",
-    caption: "Reference example · AI-retouched",
+    caption: "My frame · The thoughts behind the edit",
   },
-  duration: 12,
+  duration: 6,
   steps: [
     {
       title: "Lift the shadows",
@@ -21,7 +21,7 @@ export const editingStory = {
     },
     {
       title: "Find the light",
-      note: "A warm flare from the upper-right corner gives the frame a direction and a little atmosphere.",
+      note: "I’d raise the exposure through a soft gradient from the upper right, giving the light a direction without adding a visible flare.",
     },
   ],
   // Masks use the sample's 640 × 960 coordinate system. A higher-resolution

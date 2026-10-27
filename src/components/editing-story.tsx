@@ -8,6 +8,7 @@ import {
   useMotionValue,
   useMotionValueEvent,
   useTransform,
+  type MotionValue,
 } from "motion/react";
 import {
   useCallback,
@@ -28,6 +29,43 @@ const getReducedMotion = () =>
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const getServerReducedMotion = () => true;
 type Playback = "idle" | "playing" | "paused" | "complete";
+
+function MarkerNote({
+  progress,
+  x,
+  y,
+  width,
+  rotation = -3,
+  children,
+}: {
+  progress: MotionValue<number>;
+  x: number;
+  y: number;
+  width: number;
+  rotation?: number;
+  children: string;
+}) {
+  const clipId = `marker-${useId().replace(/:/g, "")}`;
+  const writtenWidth = useTransform(progress, [0.08, 1], [0, width]);
+
+  return (
+    <g transform={`rotate(${rotation} ${x} ${y})`}>
+      <defs>
+        <clipPath id={clipId}>
+          <motion.rect
+            x={x - 5}
+            y={y - 40}
+            height="58"
+            style={{ width: writtenWidth }}
+          />
+        </clipPath>
+      </defs>
+      <text x={x} y={y} clipPath={`url(#${clipId})`}>
+        {children}
+      </text>
+    </g>
+  );
+}
 
 export function EditingStory() {
   const id = useId().replace(/:/g, "");
@@ -57,7 +95,7 @@ export function EditingStory() {
   const shadow = useTransform(progress, [0.04, 0.23], [0, 1]);
   const subject = useTransform(progress, [0.29, 0.48], [0, 1]);
   const background = useTransform(progress, [0.54, 0.73], [0, 0.36]);
-  const flare = useTransform(progress, [0.8, 1], [0, 0.72]);
+  const light = useTransform(progress, [0.8, 1], [0, 0.8]);
   const shadowMark = useTransform(progress, [0, 0.14], [0, 1]);
   const subjectMark = useTransform(progress, [0.25, 0.39], [0, 1]);
   const backgroundMark = useTransform(progress, [0.5, 0.64], [0, 1]);
@@ -182,6 +220,13 @@ export function EditingStory() {
                 <filter id={`${id}-soft`}>
                   <feGaussianBlur stdDeviation="7" />
                 </filter>
+                <filter id={`${id}-exposure`} colorInterpolationFilters="sRGB">
+                  <feComponentTransfer>
+                    <feFuncR type="linear" slope="1.6" />
+                    <feFuncG type="linear" slope="1.6" />
+                    <feFuncB type="linear" slope="1.6" />
+                  </feComponentTransfer>
+                </filter>
                 <mask id={`${id}-shadows`}>
                   <g fill="white" filter={`url(#${id}-soft)`}>
                     <ellipse cx="118" cy="585" rx="67" ry="70" />
@@ -205,12 +250,25 @@ export function EditingStory() {
                     <path d="M0 368 57 389 88 484 70 620 0 655Z" />
                   </g>
                 </mask>
-                <radialGradient id={`${id}-flare`}>
-                  <stop stopColor="#fffce3" stopOpacity=".95" />
-                  <stop offset=".15" stopColor="#ffe8ba" stopOpacity=".8" />
-                  <stop offset=".5" stopColor="#ffc97c" stopOpacity=".25" />
-                  <stop offset="1" stopColor="#ffc97c" stopOpacity="0" />
-                </radialGradient>
+                <linearGradient
+                  id={`${id}-light-gradient`}
+                  x1="100%"
+                  y1="0%"
+                  x2="22%"
+                  y2="76%"
+                >
+                  <stop stopColor="white" />
+                  <stop offset=".25" stopColor="white" stopOpacity=".85" />
+                  <stop offset=".62" stopColor="white" stopOpacity=".25" />
+                  <stop offset="1" stopColor="white" stopOpacity="0" />
+                </linearGradient>
+                <mask id={`${id}-light-mask`}>
+                  <rect
+                    width="640"
+                    height="960"
+                    fill={`url(#${id}-light-gradient)`}
+                  />
+                </mask>
               </defs>
               <use href={`#${id}-photo`} />
               <motion.g style={{ opacity: shadow }}>
@@ -234,15 +292,11 @@ export function EditingStory() {
                 mask={`url(#${id}-background)`}
                 style={{ opacity: background }}
               />
-              <motion.g className="editing-flare" style={{ opacity: flare }}>
-                <circle cx="600" cy="90" r="225" fill={`url(#${id}-flare)`} />
-                <ellipse
-                  cx="553"
-                  cy="150"
-                  rx="28"
-                  ry="250"
-                  transform="rotate(40 553 150)"
-                  fill={`url(#${id}-flare)`}
+              <motion.g className="editing-light" style={{ opacity: light }}>
+                <use
+                  href={`#${id}-photo`}
+                  mask={`url(#${id}-light-mask)`}
+                  filter={`url(#${id}-exposure)`}
                 />
               </motion.g>
               <g
@@ -258,9 +312,9 @@ export function EditingStory() {
                     d="M73 605c-38-91 62-111 92-40s-46 130-81 66M328 578c-12-83 88-107 104-26s-77 140-100 60M103 723q-28-31-2-73m-2 1-10 12m10-12 8 14"
                     style={{ pathLength: shadowMark }}
                   />
-                  <text x="48" y="754">
+                  <MarkerNote progress={shadowMark} x={48} y={754} width={320}>
                     lift these shadows
-                  </text>
+                  </MarkerNote>
                 </motion.g>
                 <motion.g
                   className="edit-mark edit-mark-subject"
@@ -274,12 +328,18 @@ export function EditingStory() {
                     d="M412 260q-34 13-52 52m0 0-1-16m1 16 15-7"
                     style={{ pathLength: subjectMark }}
                   />
-                  <text x="337" y="225">
+                  <MarkerNote progress={subjectMark} x={337} y={225} width={300}>
                     let the subjects
-                  </text>
-                  <text x="363" y="253">
+                  </MarkerNote>
+                  <MarkerNote
+                    progress={subjectMark}
+                    x={363}
+                    y={261}
+                    width={210}
+                    rotation={-1}
+                  >
                     stand out
-                  </text>
+                  </MarkerNote>
                 </motion.g>
                 <motion.g
                   className="edit-mark edit-mark-background"
@@ -289,9 +349,15 @@ export function EditingStory() {
                     d="M39 111q80 28 64 120m0 0-8-14m8 14 10-12M29 284l40-20m-24 42 33-16"
                     style={{ pathLength: backgroundMark }}
                   />
-                  <text x="25" y="84">
+                  <MarkerNote
+                    progress={backgroundMark}
+                    x={25}
+                    y={84}
+                    width={350}
+                    rotation={2}
+                  >
                     quiet the background
-                  </text>
+                  </MarkerNote>
                 </motion.g>
                 <motion.g
                   className="edit-mark edit-mark-flare"
@@ -301,9 +367,9 @@ export function EditingStory() {
                     d="M429 111q17-35 93-35m0 0-14-8m14 8-13 10M552 110q-15-58 32-60t35 50M556 139l-17 21m60-34 11 22"
                     style={{ pathLength: flareMark }}
                   />
-                  <text x="381" y="47">
+                  <MarkerNote progress={flareMark} x={381} y={47} width={250}>
                     a little light
-                  </text>
+                  </MarkerNote>
                 </motion.g>
               </g>
             </svg>

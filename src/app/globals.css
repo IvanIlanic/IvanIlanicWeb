@@ -425,9 +425,6 @@ em {
   width: 100%;
   height: 100%;
 }
-.editing-flare {
-  mix-blend-mode: screen;
-}
 .editing-loading {
   position: absolute;
   left: 0;
@@ -455,7 +452,7 @@ em {
   --marker: #ffcf91;
   fill: none;
   stroke: var(--marker);
-  stroke-width: 3;
+  stroke-width: 5.5;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -471,11 +468,11 @@ em {
 .edit-mark text {
   fill: var(--marker);
   stroke: #10212bcc;
-  stroke-width: 3px;
+  stroke-width: 2.5px;
   paint-order: stroke;
-  font-family: "Instrument Serif", Georgia, serif;
-  font-style: italic;
-  font-size: 28px;
+  font-family: "Kalam", cursive;
+  font-weight: 700;
+  font-size: 30px;
 }
 .editing-notes-label {
   color: #cfc5b7;
