@@ -1,7 +1,7 @@
 export const editingStory = {
   image: {
     // Replace with the full-resolution source photo when it is available.
-    src: "/images/editing-study-example.png",
+    src: "/images/Vehicle.jpg",
     alt: "A blue Icelandic rescue vehicle with large tires beneath red rescue flags",
     caption: "Reference example · AI-retouched",
   },
