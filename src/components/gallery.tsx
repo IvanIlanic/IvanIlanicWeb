@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { photographs } from "@/data/portfolio";
+import { photographCategories, photographs } from "@/data/portfolio";
 import { Arrow } from "./icons";
 import { Reveal } from "./reveal";
 
-const filters = ["All frames", "Landscapes", "Details"] as const;
+const filters = ["All frames", ...photographCategories] as const;
+const formatCount = (count: number) => String(count).padStart(2, "0");
 
 export function Gallery() {
   const [filter, setFilter] = useState<(typeof filters)[number]>("All frames");
@@ -68,13 +69,17 @@ export function Gallery() {
             >
               {f}
               <span>
-                {f === "All frames" ? "04" : f === "Landscapes" ? "03" : "01"}
+                {formatCount(
+                  f === "All frames"
+                    ? photographs.length
+                    : photographs.filter((item) => item.category === f).length,
+                )}
               </span>
             </button>
           ))}
         </div>
         <span className="eyebrow gallery-hint">
-          A COLLECTION OF SAMPLE FRAMES
+          SELECTED PHOTOGRAPHY BY IVAN ILANIĆ
         </span>
       </div>
       <div className="photo-grid">
@@ -84,13 +89,21 @@ export function Gallery() {
               className="photo-button"
               onClick={() => openPhoto(photographs.indexOf(p))}
               aria-label={`View ${p.title}`}
+              aria-haspopup="dialog"
             >
-              <div className="photo-image">
+              <div
+                className="photo-image"
+                style={{ aspectRatio: `${p.width} / ${p.height}` }}
+              >
                 <Image
                   src={p.src}
                   alt={p.alt}
                   fill
-                  sizes="(max-width: 700px) 100vw, 55vw"
+                  sizes={
+                    visible.length % 2 === 1 && i === visible.length - 1
+                      ? "(max-width: 700px) 90vw, 980px"
+                      : "(max-width: 700px) 90vw, 55vw"
+                  }
                 />
                 <span className="photo-category eyebrow">{p.category}</span>
                 <span className="photo-open">
@@ -127,7 +140,9 @@ export function Gallery() {
         }}
       >
         <div className="lightbox-top">
-          <span className="eyebrow">SAMPLE FRAME {photo.id} / 04</span>
+          <span className="eyebrow">
+            FRAME {photo.id} / {formatCount(photographs.length)}
+          </span>
           <button
             ref={closeButton}
             onClick={() => dialog.current?.close()}
@@ -136,30 +151,39 @@ export function Gallery() {
             Close <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div className="lightbox-image">
-          <Image src={photo.src} alt={photo.alt} fill sizes="90vw" />
-        </div>
-        <div className="lightbox-bottom">
-          <button
-            onClick={() => changePhoto(-1)}
-            aria-label="Previous photograph"
-          >
-            <Arrow direction="left" />
-          </button>
-          <div aria-live="polite">
-            <h3>{photo.title}</h3>
-            <p>
-              Sample image by{" "}
-              <a href={photo.creditUrl} target="_blank" rel="noreferrer">
-                {photo.credit}
-              </a>{" "}
-              / Unsplash
-            </p>
-          </div>
-          <button onClick={() => changePhoto(1)} aria-label="Next photograph">
-            <Arrow direction="right" />
-          </button>
-        </div>
+        {isOpen && (
+          <>
+            <div className="lightbox-image">
+              <Image
+                key={photo.id}
+                src={photo.src}
+                alt={photo.alt}
+                fill
+                sizes="90vw"
+              />
+            </div>
+            <div className="lightbox-bottom">
+              <button
+                onClick={() => changePhoto(-1)}
+                aria-label="Previous photograph"
+              >
+                <Arrow direction="left" />
+              </button>
+              <div aria-live="polite">
+                <h3>{photo.title}</h3>
+                <p>
+                  {photo.location} · Photography by {photo.credit}
+                </p>
+              </div>
+              <button
+                onClick={() => changePhoto(1)}
+                aria-label="Next photograph"
+              >
+                <Arrow direction="right" />
+              </button>
+            </div>
+          </>
+        )}
       </dialog>
     </>
   );

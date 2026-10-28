@@ -34,9 +34,9 @@ Browser checks for this iteration: gallery filtering; open/close lightbox; previ
 - `src/data/portfolio.ts`: typed photograph records, captions, alternative text, categories, and credits.
 - `src/app/globals.css`: Tailwind entry point, shared design tokens, editorial layouts, breakpoints, and reduced-motion styles.
 - `src/app/layout.tsx`: local fonts and page metadata.
-- `public/images/`: sample photographs. Credits are visible on the website and in each gallery record. The reference project's MIT notice is retained here.
+- `public/images/`: Ivan’s hero, diving, travel, and gallery photographs alongside the remaining design samples. The reference project’s MIT notice is retained here.
 
-The default hero uses the photograph supplied by Ivan. The gallery photographs and alternate hero scenes are still credited design samples, **not Ivan's own work**. Biography copy is a draft. No personal achievements, travel history, film releases, or contact email are invented; these sections can grow as real content is supplied. The GitHub profile is the initial contact destination.
+The default hero and selected photography gallery use Ivan’s own photographs. The alternate hero scenes and fullscreen travel introduction still use credited design samples. Personal stories and travel locations are based on information supplied by Ivan. The GitHub profile is the initial contact destination; no contact email is invented.
 
 ## Why this structure?
 
@@ -44,13 +44,13 @@ The page stays a Server Component. Only interactions and animated reveals use cl
 
 Motion animates transforms and opacity once as content enters view. On mouse movement (including on touch-capable laptops), the hero landscape follows the cursor with a noticeable opposite offset while the title moves more gently in the other direction. Overscan hides image edges. Spring motion values keep pointer updates outside React rendering; movement resets on pointer exit or window blur and ignores touch gestures and turns off for reduced motion, including preference changes while the page is open. The CSS hero entrance and anchor scrolling respect reduced-motion preferences. GSAP, Lenis, and React Three Fiber are intentionally deferred until a specific interaction calls for them.
 
-Next steps: replace samples with personal photos, approve the biography, add a real contact destination, and expand the first travel or project story. Video, a full achievements timeline, and 3D effects are future iterations.
+Future additions can include personal images for the alternate hero scenes, a contact destination, films, and an achievements timeline.
 
 ## Add your photos
 
 1. Drag your photo files into `public/images/` in your editor. Use simple names such as `my-mountain.jpg`. There is no in-site upload form; these files are part of the project.
 2. For the homepage scenes, edit `src/components/hero.tsx`. Change a scene's `src` to `/images/my-mountain.jpg` and update its `alt`, `label`, and `note`.
-3. For the gallery, edit `src/data/portfolio.ts`. Update a record's `src`, `title`, `alt`, `location`, and credits. A public URL starts at `/images/`, never `/public/images/`.
+3. For the gallery, edit `src/data/portfolio.ts`. Update a record's `src`, `title`, `alt`, `category`, `location`, `credit`, `width`, and `height`. A public URL starts at `/images/`, never `/public/images/`.
 4. Landscape JPEG or WebP files around 2000–3000 pixels wide work well for the fullscreen hero. Use new filenames when replacing photos to avoid a browser serving an older optimized image.
 
 If development styles or motion appear stale after pulling an update, stop the server with Ctrl+C, run `git pull origin main`, run `npm ci` if dependencies changed, then start `npm run dev` again and refresh the browser. Mouse parallax respects your system's reduced-motion setting, so it stays still when reduced motion is enabled.
@@ -112,3 +112,9 @@ The former journal placeholder is now a personal travel story about openness to 
 The globe can be dragged with a mouse or horizontally on touch, while vertical touch gestures remain available for page scrolling. Direction buttons provide keyboard access to rotation. Selecting a destination or place turns the globe along the shorter longitude arc; reduced-motion preferences make selections immediate. There is no automatic spin. The visible destination list and place details also work while geographic data is loading or unavailable. The dotted arc connects the hometown and current home; it does not represent a flight path or travel itinerary.
 
 `d3-geo` handles projection and horizon clipping. Computed SVG coordinates are serialized to three decimal places, matching the path generator’s precision, so small cross-platform trigonometric differences do not cause server/client hydration mismatches. Run `npm install` after pulling this change; its matching TypeScript definitions are development dependencies. The 193 KB local `public/maps/countries-110m.geojson` loads only near the globe. It was derived from world-atlas 2.0.2 (Natural Earth 1:110m country outlines), converted from TopoJSON to GeoJSON with coordinates rounded to three decimals. Map data has no external runtime service, API key, or tracking dependency. `public/maps/world-atlas-LICENSE.txt` preserves the source license. Natural Earth data is public domain; map outlines are generalized and Gibraltar is represented by its place marker because it has no separate shape at this scale.
+
+## Selected photography gallery
+
+“The world, as I see it” uses all five personal JPEG photographs in `public/images/Gallery/`: Carmeet6-116, Cocktailweek-07, DSC06136, MicroConf2026-03, and TravelPerlan-02. The records in `src/data/portfolio.ts` supply descriptive alt text, editorial titles, categories, original dimensions, and Ivan’s credit. Captions do not invent locations or the identities of photographed people. Categories are Automotive, Portraits, and Events; counts come from the records. Photographs retain their native proportions and color. An odd final frame spans the editorial grid, while a single filtered photograph stays at a comfortable width.
+
+The viewer supports all five frames, arrow keys, Escape, focus restoration, and scroll locking. Its full-size image mounts only when the viewer opens. Next.js serves responsive optimized images from the unchanged originals, including the large source files. Placeholder copy and gallery Unsplash credits have been removed; the footer continues crediting the lake and ocean samples still used by other sections. Archived alpine and maple sample files remain in the repository, originally credited to John Lee and Guillaume Jaillet respectively via Unsplash and the Tailwind Next.js Starter Blog.

@@ -1,54 +1,77 @@
+export const photographCategories = [
+  "Automotive",
+  "Portraits",
+  "Events",
+] as const;
+
 export type Photograph = {
   id: string;
   title: string;
-  category: "Landscapes" | "Details";
+  category: (typeof photographCategories)[number];
   src: string;
   alt: string;
+  width: number;
+  height: number;
   location: string;
   credit: string;
-  creditUrl: string;
 };
 
-// Sample imagery, not Ivan's photographs. Replace these records with personal work.
+// Personal photographs supplied by Ivan. Keep dimensions in sync with new files
+// so each preview preserves the original composition without a forced crop.
 export const photographs: Photograph[] = [
   {
     id: "01",
-    title: "Where the world stands still",
-    category: "Landscapes",
-    src: "/images/alpine.jpg",
-    alt: "Rocky mountain peaks mirrored in a blue alpine lake",
-    location: "Moraine Lake, Canada",
-    credit: "John Lee",
-    creditUrl: "https://unsplash.com/@john_artifexfilms",
+    title: "Chasing the last light",
+    category: "Automotive",
+    src: "/images/Gallery/Carmeet6-116.jpg",
+    alt: "A white sports car and a burgundy sports car parked beneath a golden sunset sky",
+    width: 5934,
+    height: 3956,
+    location: "Car meet · The golden hour",
+    credit: "Ivan Ilanić",
   },
   {
     id: "02",
-    title: "A softer kind of silence",
-    category: "Landscapes",
-    src: "/images/lake.jpg",
-    alt: "A quiet lake framed by evergreen forest and distant mountains",
-    location: "Canadian wilderness",
-    credit: "Tj Holowaychuk",
-    creditUrl: "https://unsplash.com/@tjholowaychuk",
+    title: "A little rhythm behind the bar",
+    category: "Events",
+    src: "/images/Gallery/Cocktailweek-07.jpg",
+    alt: "A smiling bartender holding two metal cocktail shakers behind a colorful bar",
+    width: 3044,
+    height: 4566,
+    location: "Cocktail week · Behind the bar",
+    credit: "Ivan Ilanić",
   },
   {
     id: "03",
-    title: "The art of slowing down",
-    category: "Details",
-    src: "/images/maple.jpg",
-    alt: "Sunlight falling through red maple leaves",
-    location: "An autumn study",
-    credit: "Guillaume Jaillet",
-    creditUrl: "https://unsplash.com/@i_am_g",
+    title: "Between moments",
+    category: "Portraits",
+    src: "/images/Gallery/DSC06136.jpg",
+    alt: "A man in a black T-shirt looking toward the camera beside a warmly lit bar",
+    width: 4672,
+    height: 7008,
+    location: "A portrait study",
+    credit: "Ivan Ilanić",
   },
   {
     id: "04",
-    title: "Somewhere, beyond",
-    category: "Landscapes",
-    src: "/images/ocean.jpg",
-    alt: "An expansive ocean beneath a soft, open sky",
-    location: "Along the coast",
-    credit: "YUCAR FotoGrafik",
-    creditUrl: "https://unsplash.com/@yucar",
+    title: "Beyond the room",
+    category: "Events",
+    src: "/images/Gallery/MicroConf2026-03.jpg",
+    alt: "People in outdoor jackets smiling and talking beside steam rising from a rocky landscape",
+    width: 7008,
+    height: 4672,
+    location: "MicroConf 2026 · Candid moments",
+    credit: "Ivan Ilanić",
+  },
+  {
+    id: "05",
+    title: "In good company",
+    category: "Events",
+    src: "/images/Gallery/TravelPerlan-02.jpg",
+    alt: "A woman with glasses smiling during a conversation at a warmly lit gathering",
+    width: 7008,
+    height: 4672,
+    location: "A candid conversation",
+    credit: "Ivan Ilanić",
   },
 ];

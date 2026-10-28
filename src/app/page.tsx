@@ -87,13 +87,6 @@ export default function Home() {
             How I think about an edit <Arrow direction="down" />
           </a>
           <Gallery />
-          <p className="sample-note">
-            A visual direction in progress. These sample photographs will make
-            way for my own photography and films.{" "}
-            <a href="#image-credits">
-              Image credits <span aria-hidden="true">↗</span>
-            </a>
-          </p>
           <EditingStory />
         </section>
 
@@ -188,13 +181,12 @@ export default function Home() {
           </a>
         </div>
         <details id="image-credits" className="credits">
-          <summary>Sample photography & credits</summary>
+          <summary>Photography & image credits</summary>
           <p>
-            Design preview imagery, not photographs by Ivan. Alpine landscape:{" "}
-            <a href="https://unsplash.com/@john_artifexfilms">John Lee</a>.
+            Selected gallery photography by Ivan Ilanić. The alternate hero
+            scenes and fullscreen travel introduction still use design samples.
             Lake:{" "}
             <a href="https://unsplash.com/@tjholowaychuk">Tj Holowaychuk</a>.
-            Maple: <a href="https://unsplash.com/@i_am_g">Guillaume Jaillet</a>.
             Ocean: <a href="https://unsplash.com/@yucar">YUCAR FotoGrafik</a>.
             Via Unsplash and the{" "}
             <a href="https://github.com/timlrx/tailwind-nextjs-starter-blog">
