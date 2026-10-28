@@ -25,9 +25,6 @@ export default function Home() {
         >
           <div className="section-label">
             <span className="eyebrow">01 / A LITTLE ABOUT ME</span>
-            <span className="asterisk" aria-hidden="true">
-              ✳
-            </span>
           </div>
           <Reveal>
             <h2 id="about-title" className="statement">
@@ -148,25 +145,35 @@ export default function Home() {
               Good things start
               <br />
               with a <em>hello.</em>
-              <span className="contact-star" aria-hidden="true">
-                ✳
-              </span>
             </h2>
           </Reveal>
           <div className="contact-bottom">
-            <p>
-              Have a problem to solve,
-              <br />
-              an idea to build, or a story to share?
-            </p>
-            <a
-              href="https://github.com/IvanIlanic"
-              target="_blank"
-              rel="noreferrer"
-              className="contact-link"
-            >
-              Find me on GitHub <Arrow />
-            </a>
+            <p>{profile.contact.invitation}</p>
+            <div className="contact-links">
+              <div className="contact-channel">
+                <span className="eyebrow">EMAIL</span>
+                <a
+                  href={`mailto:${profile.contact.email}`}
+                  className="contact-link"
+                >
+                  <span>{profile.contact.email}</span>
+                  <Arrow />
+                </a>
+              </div>
+              <div className="contact-channel">
+                <span className="eyebrow">INSTAGRAM</span>
+                <a
+                  href={profile.contact.instagram.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Instagram: ${profile.contact.instagram.handle}`}
+                  className="contact-link"
+                >
+                  <span>{profile.contact.instagram.handle}</span>
+                  <Arrow />
+                </a>
+              </div>
+            </div>
           </div>
         </section>
       </main>

@@ -36,7 +36,7 @@ Browser checks for this iteration: gallery filtering; open/close lightbox; previ
 - `src/app/layout.tsx`: local fonts and page metadata.
 - `public/images/`: Ivan’s hero, diving, travel, and gallery photographs alongside the remaining design samples. The reference project’s MIT notice is retained here.
 
-The default hero and selected photography gallery use Ivan’s own photographs. The alternate hero scenes and fullscreen travel introduction still use credited design samples. Personal stories and travel locations are based on information supplied by Ivan. The GitHub profile is the initial contact destination; no contact email is invented.
+The default hero and selected photography gallery use Ivan’s own photographs. The alternate hero scenes and fullscreen travel introduction still use credited design samples. Personal stories and travel locations are based on information supplied by Ivan. The contact section publishes Ivan’s supplied email and Instagram, with an invitation to share ideas and collaborate.
 
 ## Why this structure?
 
@@ -44,7 +44,7 @@ The page stays a Server Component. Only interactions and animated reveals use cl
 
 Motion animates transforms and opacity once as content enters view. On mouse movement (including on touch-capable laptops), the hero landscape follows the cursor with a noticeable opposite offset while the title moves more gently in the other direction. Overscan hides image edges. Spring motion values keep pointer updates outside React rendering; movement resets on pointer exit or window blur and ignores touch gestures and turns off for reduced motion, including preference changes while the page is open. The CSS hero entrance and anchor scrolling respect reduced-motion preferences. GSAP, Lenis, and React Three Fiber are intentionally deferred until a specific interaction calls for them.
 
-Future additions can include personal images for the alternate hero scenes, a contact destination, films, and an achievements timeline.
+Future additions can include personal images for the alternate hero scenes, films and an achievements timeline.
 
 ## Add your photos
 
@@ -122,3 +122,7 @@ The viewer supports all five frames, arrow keys, Escape, focus restoration, and 
 ## Deploy to Cloudflare
 
 Follow [CLOUDFLARE.md](./CLOUDFLARE.md) for dashboard settings for the existing `ivanilanicweb` Worker and the Pages alternative. Both use `npm run build:cloudflare` to generate the static `out/` directory. The Worker deploy command is `npm run deploy:cloudflare`, which explicitly uses `wrangler.worker.jsonc`; preview/version builds use `npm run upload:cloudflare`. The configuration serves static assets with no service self-reference or Images binding. The build generates responsive WebP images and checks asset limits. No runtime Next.js server, Cloudflare Images subscription, or database is required. Node.js 24 is selected by `.node-version`; Sharp and Wrangler are versioned development dependencies. Regular `npm run dev` and `npm run build` retain their existing Next.js behavior.
+
+## Contact details
+
+`src/data/profile.ts` holds the public email `ilanicivan@gmail.com`, Instagram `https://www.instagram.com/ivan_ilanic/`, and the invitation to share ideas, projects, and collaborations. The contact section uses a native `mailto:` link and an Instagram link that opens in a new tab. The previous GitHub contact link and decorative asterisks have been removed.
