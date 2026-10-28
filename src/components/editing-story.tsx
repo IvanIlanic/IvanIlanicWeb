@@ -1,6 +1,6 @@
 "use client";
 
-import { getImageProps } from "next/image";
+import Image, { getImageProps } from "next/image";
 import {
   animate,
   motion,
@@ -122,12 +122,14 @@ export function EditingStory() {
   const [activeStep, setActiveStep] = useState(0);
   const [status, setStatus] = useState<Playback>("idle");
   const [ready, setReady] = useState(false);
+  const [photoFailed, setPhotoFailed] = useState(false);
   const [notesVisible, setNotesVisible] = useState(true);
+  // Share one pre-optimized, modest-size image across HTML and SVG layers.
   const texture = getImageProps({
     src: editingStory.image.src,
     alt: "",
-    width: 640,
-    height: 960,
+    width: 480,
+    height: 720,
   }).props.src;
   const shadow = useTransform(progress, [0.04, 0.23], [0, 1]);
   const subject = useTransform(progress, [0.29, 0.48], [0, 1]);
@@ -228,22 +230,25 @@ export function EditingStory() {
             data-step={activeStep + 1}
             data-playback={status}
           >
+            <Image
+              className="editing-photo"
+              src={texture}
+              alt={editingStory.image.alt}
+              fill
+              unoptimized
+              onLoad={() => {
+                setPhotoFailed(false);
+                setReady(true);
+              }}
+              onError={() => setPhotoFailed(true)}
+            />
             <svg
               viewBox="0 0 640 960"
               className="editing-canvas"
-              role="img"
-              aria-label={editingStory.image.alt}
+              aria-hidden="true"
+              focusable="false"
             >
-              <title>{editingStory.image.alt}</title>
               <defs>
-                <image
-                  id={`${id}-photo`}
-                  href={near ? texture : undefined}
-                  width="640"
-                  height="960"
-                  preserveAspectRatio="xMidYMid slice"
-                  onLoad={() => setReady(true)}
-                />
                 <filter id={`${id}-shadow`} colorInterpolationFilters="sRGB">
                   <feComponentTransfer>
                     <feFuncR type="gamma" exponent="0.7" />
@@ -268,7 +273,15 @@ export function EditingStory() {
                     <feFuncB type="linear" slope="1.6" />
                   </feComponentTransfer>
                 </filter>
-                <mask id={`${id}-shadows`}>
+                <mask
+                  id={`${id}-shadows`}
+                  maskUnits="userSpaceOnUse"
+                  maskContentUnits="userSpaceOnUse"
+                  x="0"
+                  y="0"
+                  width="640"
+                  height="960"
+                >
                   <g fill="white" filter={`url(#${id}-soft)`}>
                     <ellipse cx="118" cy="585" rx="67" ry="70" />
                     <ellipse cx="376" cy="580" rx="59" ry="78" />
@@ -277,14 +290,30 @@ export function EditingStory() {
                     <ellipse cx="18" cy="570" rx="43" ry="76" />
                   </g>
                 </mask>
-                <mask id={`${id}-body`}>
+                <mask
+                  id={`${id}-body`}
+                  maskUnits="userSpaceOnUse"
+                  maskContentUnits="userSpaceOnUse"
+                  x="0"
+                  y="0"
+                  width="640"
+                  height="960"
+                >
                   <path
                     d={editingStory.bodyPath}
                     fill="white"
                     filter={`url(#${id}-soft)`}
                   />
                 </mask>
-                <mask id={`${id}-background`}>
+                <mask
+                  id={`${id}-background`}
+                  maskUnits="userSpaceOnUse"
+                  maskContentUnits="userSpaceOnUse"
+                  x="0"
+                  y="0"
+                  width="640"
+                  height="960"
+                >
                   <rect width="640" height="960" fill="white" />
                   <g fill="black">
                     <path d={editingStory.subjectPath} />
@@ -303,7 +332,15 @@ export function EditingStory() {
                   <stop offset=".62" stopColor="white" stopOpacity=".25" />
                   <stop offset="1" stopColor="white" stopOpacity="0" />
                 </linearGradient>
-                <mask id={`${id}-light-mask`}>
+                <mask
+                  id={`${id}-light-mask`}
+                  maskUnits="userSpaceOnUse"
+                  maskContentUnits="userSpaceOnUse"
+                  x="0"
+                  y="0"
+                  width="640"
+                  height="960"
+                >
                   <rect
                     width="640"
                     height="960"
@@ -311,17 +348,24 @@ export function EditingStory() {
                   />
                 </mask>
               </defs>
-              <use href={`#${id}-photo`} />
               <motion.g style={{ opacity: shadow }}>
-                <use
-                  href={`#${id}-photo`}
+                <image
+                  href={near ? texture : undefined}
+                  xlinkHref={near ? texture : undefined}
+                  width="640"
+                  height="960"
+                  preserveAspectRatio="xMidYMid slice"
                   mask={`url(#${id}-shadows)`}
                   filter={`url(#${id}-shadow)`}
                 />
               </motion.g>
               <motion.g style={{ opacity: subject }}>
-                <use
-                  href={`#${id}-photo`}
+                <image
+                  href={near ? texture : undefined}
+                  xlinkHref={near ? texture : undefined}
+                  width="640"
+                  height="960"
+                  preserveAspectRatio="xMidYMid slice"
                   mask={`url(#${id}-body)`}
                   filter={`url(#${id}-subject)`}
                 />
@@ -334,8 +378,12 @@ export function EditingStory() {
                 style={{ opacity: background }}
               />
               <motion.g className="editing-light" style={{ opacity: light }}>
-                <use
-                  href={`#${id}-photo`}
+                <image
+                  href={near ? texture : undefined}
+                  xlinkHref={near ? texture : undefined}
+                  width="640"
+                  height="960"
+                  preserveAspectRatio="xMidYMid slice"
                   mask={`url(#${id}-light-mask)`}
                   filter={`url(#${id}-exposure)`}
                 />
@@ -422,7 +470,11 @@ export function EditingStory() {
               </g>
             </svg>
             {!ready && (
-              <span className="editing-loading eyebrow">LOADING THE FRAME</span>
+              <span className="editing-loading eyebrow" role="status">
+                {photoFailed
+                  ? "PHOTO COULDN’T LOAD · PLEASE REFRESH"
+                  : "LOADING THE FRAME"}
+              </span>
             )}
           </div>
           <div className="editing-frame-caption">
