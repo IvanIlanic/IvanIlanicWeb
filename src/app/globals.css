@@ -1,13 +1,5 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: "Kalam";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("./fonts/kalam-latin-700-normal.woff2") format("woff2");
-}
-
 @theme inline {
   --color-background: #111111;
   --color-foreground: #e8e8e8;
@@ -473,14 +465,13 @@ em {
 .edit-mark-flare {
   --marker: #ffe1ab;
 }
-.edit-mark text {
-  fill: var(--marker);
-  stroke: #10212bcc;
-  stroke-width: 2.5px;
-  paint-order: stroke;
-  font-family: "Kalam", cursive;
-  font-weight: 700;
-  font-size: 30px;
+.marker-lettering {
+  fill: none;
+  stroke: var(--marker);
+  stroke-width: 3.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 1px 1px #10212bcc) drop-shadow(0 -1px 1px #10212b99);
 }
 .editing-notes-label {
   color: #cfc5b7;

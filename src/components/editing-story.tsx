@@ -19,6 +19,7 @@ import {
   useSyncExternalStore,
 } from "react";
 import { editingStory } from "@/data/editing-story";
+import { drawMarkerWords } from "@/data/marker-lettering";
 
 function subscribeReducedMotion(listener: () => void) {
   const query = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -30,12 +31,39 @@ const getReducedMotion = () =>
 const getServerReducedMotion = () => true;
 type Playback = "idle" | "playing" | "paused" | "complete";
 
+function MarkerStroke({
+  progress,
+  start,
+  end,
+  d,
+  transform,
+}: {
+  progress: MotionValue<number>;
+  start: number;
+  end: number;
+  d: string;
+  transform: string;
+}) {
+  const drawn = useTransform(progress, [start, end], [0, 1]);
+  const ink = useTransform(drawn, [0, 0.03], [0, 1]);
+  return (
+    <motion.path
+      className="marker-pen-stroke"
+      d={d}
+      transform={transform}
+      style={{ pathLength: drawn, opacity: ink }}
+    />
+  );
+}
+
 function MarkerNote({
   progress,
   x,
   y,
   width,
   rotation = -3,
+  from = 0,
+  to = 1,
   children,
 }: {
   progress: MotionValue<number>;
@@ -43,26 +71,35 @@ function MarkerNote({
   y: number;
   width: number;
   rotation?: number;
+  from?: number;
+  to?: number;
   children: string;
 }) {
-  const clipId = `marker-${useId().replace(/:/g, "")}`;
-  const writtenWidth = useTransform(progress, [0.08, 1], [0, width]);
+  const lettering = drawMarkerWords(children);
+  const scale = Math.min(1.35, width / lettering.width);
 
   return (
-    <g transform={`rotate(${rotation} ${x} ${y})`}>
-      <defs>
-        <clipPath id={clipId}>
-          <motion.rect
-            x={x - 5}
-            y={y - 40}
-            height="58"
-            style={{ width: writtenWidth }}
+    <g
+      className="marker-lettering"
+      data-note={children}
+      transform={`translate(${x} ${y}) rotate(${rotation}) scale(${scale}) translate(0 -24)`}
+    >
+      {lettering.strokes.map((stroke, index) => {
+        const start = from + (stroke.offset / lettering.length) * (to - from);
+        const end =
+          from +
+          ((stroke.offset + stroke.length) / lettering.length) * (to - from);
+        return (
+          <MarkerStroke
+            key={index}
+            progress={progress}
+            start={start}
+            end={end}
+            d={stroke.d}
+            transform={`translate(${stroke.x} ${stroke.y}) rotate(${stroke.tilt} 7 18)`}
           />
-        </clipPath>
-      </defs>
-      <text x={x} y={y} clipPath={`url(#${clipId})`}>
-        {children}
-      </text>
+        );
+      })}
     </g>
   );
 }
@@ -96,10 +133,14 @@ export function EditingStory() {
   const subject = useTransform(progress, [0.29, 0.48], [0, 1]);
   const background = useTransform(progress, [0.54, 0.73], [0, 0.36]);
   const light = useTransform(progress, [0.8, 1], [0, 0.8]);
-  const shadowMark = useTransform(progress, [0, 0.14], [0, 1]);
-  const subjectMark = useTransform(progress, [0.25, 0.39], [0, 1]);
-  const backgroundMark = useTransform(progress, [0.5, 0.64], [0, 1]);
-  const flareMark = useTransform(progress, [0.75, 0.89], [0, 1]);
+  const shadowMark = useTransform(progress, [0, 0.22], [0, 1]);
+  const subjectMark = useTransform(progress, [0.25, 0.47], [0, 1]);
+  const backgroundMark = useTransform(progress, [0.5, 0.72], [0, 1]);
+  const flareMark = useTransform(progress, [0.75, 0.97], [0, 1]);
+  const shadowInk = useTransform(shadowMark, [0, 0.02], [0, 1]);
+  const subjectInk = useTransform(subjectMark, [0, 0.02], [0, 1]);
+  const backgroundInk = useTransform(backgroundMark, [0, 0.02], [0, 1]);
+  const flareInk = useTransform(flareMark, [0, 0.02], [0, 1]);
 
   useMotionValueEvent(progress, "change", (value) => {
     const step = Math.min(3, Math.floor(value * 4));
@@ -306,7 +347,7 @@ export function EditingStory() {
               >
                 <motion.g
                   className="edit-mark edit-mark-shadow"
-                  style={{ opacity: shadowMark }}
+                  style={{ opacity: shadowInk }}
                 >
                   <motion.path
                     d="M73 605c-38-91 62-111 92-40s-46 130-81 66M328 578c-12-83 88-107 104-26s-77 140-100 60M103 723q-28-31-2-73m-2 1-10 12m10-12 8 14"
@@ -318,7 +359,7 @@ export function EditingStory() {
                 </motion.g>
                 <motion.g
                   className="edit-mark edit-mark-subject"
-                  style={{ opacity: subjectMark }}
+                  style={{ opacity: subjectInk }}
                 >
                   <motion.path
                     d={editingStory.bodyPath}
@@ -328,7 +369,13 @@ export function EditingStory() {
                     d="M412 260q-34 13-52 52m0 0-1-16m1 16 15-7"
                     style={{ pathLength: subjectMark }}
                   />
-                  <MarkerNote progress={subjectMark} x={337} y={225} width={300}>
+                  <MarkerNote
+                    progress={subjectMark}
+                    x={337}
+                    y={225}
+                    width={300}
+                    to={0.64}
+                  >
                     let the subjects
                   </MarkerNote>
                   <MarkerNote
@@ -337,13 +384,14 @@ export function EditingStory() {
                     y={261}
                     width={210}
                     rotation={-1}
+                    from={0.64}
                   >
                     stand out
                   </MarkerNote>
                 </motion.g>
                 <motion.g
                   className="edit-mark edit-mark-background"
-                  style={{ opacity: backgroundMark }}
+                  style={{ opacity: backgroundInk }}
                 >
                   <motion.path
                     d="M39 111q80 28 64 120m0 0-8-14m8 14 10-12M29 284l40-20m-24 42 33-16"
@@ -361,7 +409,7 @@ export function EditingStory() {
                 </motion.g>
                 <motion.g
                   className="edit-mark edit-mark-flare"
-                  style={{ opacity: flareMark }}
+                  style={{ opacity: flareInk }}
                 >
                   <motion.path
                     d="M429 111q17-35 93-35m0 0-14-8m14 8-13 10M552 110q-15-58 32-60t35 50M556 139l-17 21m60-34 11 22"
