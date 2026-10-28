@@ -2,6 +2,7 @@ import { travel, travelPhotos } from "@/data/travel";
 import { TravelPhotoBooth } from "./travel-photo-booth";
 import { Reveal } from "./reveal";
 import { Arrow } from "./icons";
+import { TravelGlobe } from "./travel-globe";
 
 export function TravelSection() {
   return (
@@ -37,6 +38,7 @@ export function TravelSection() {
           </Reveal>
         </div>
       </TravelPhotoBooth>
+      <TravelGlobe />
     </section>
   );
 }
