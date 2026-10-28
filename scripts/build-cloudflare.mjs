@@ -160,5 +160,5 @@ for (const file of outputFiles) {
 if (outputFiles.length > 20000)
   throw new Error("Export exceeds the Cloudflare Pages Free plan asset count.");
 console.log(
-  `Cloudflare Pages ready: ${outputFiles.length} files, ${(totalBytes / 1024 / 1024).toFixed(1)} MiB in out/.`,
+  `Cloudflare static deployment ready: ${outputFiles.length} files, ${(totalBytes / 1024 / 1024).toFixed(1)} MiB in out/.`,
 );

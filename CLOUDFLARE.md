@@ -1,8 +1,32 @@
-# Deploy the portfolio to Cloudflare Pages
+# Deploy the portfolio to Cloudflare
 
-The portfolio is a static Next.js site: its galleries, globe, marker animation, navigation, and project disclosures run in the browser. Cloudflare Pages can serve the complete site without a running Next.js server, an API key, a database, or a paid image transformation service.
+The portfolio is a static Next.js site: its galleries, globe, marker animation, navigation, and project disclosures run in the browser. Cloudflare can serve the complete site as static assets without a running Next.js server, an API key, a database, or a paid image transformation service.
 
-## First deployment in the Cloudflare dashboard
+## Existing Worker: ivanilanicweb
+
+The current Cloudflare project is a Worker named `ivanilanicweb`. Use Workers Static Assets to serve the same prepared export. `wrangler.worker.jsonc` explicitly names that Worker and serves `out/`, with the exported 404 page. It has no service self-reference or Images binding.
+
+1. Open **Workers & Pages → ivanilanicweb → Settings → Build**.
+2. Edit and save these build settings:
+
+   | Field | Value |
+   | --- | --- |
+   | Production branch | `main` |
+   | Build command | `npm run build:cloudflare` |
+   | Deploy command | `npm run deploy:cloudflare` |
+   | Preview / non-production deploy command, if shown | `npm run upload:cloudflare` |
+   | Root directory | Repository root; leave the default `/` or blank |
+
+3. Run/retry the build for the **latest commit on `main`**, containing `wrangler.worker.jsonc` and the deployment scripts. Retrying an older commit will not include the fix.
+4. On success, open the Worker's **Visit** / `workers.dev` URL. To add a domain, use **Settings → Domains & Routes → Add → Custom Domain** and follow Cloudflare's instructions.
+
+The deployment and version-upload scripts explicitly pass `--config wrangler.worker.jsonc`, which prevents framework auto-configuration from generating a different Next.js server Worker. Wrangler is versioned in `package.json` and installed automatically by the Git build. No account token or application secret needs adding to the repository; Cloudflare supplies deployment authorization for its Git integration.
+
+### Why error 10143 occurred
+
+The failed deployment targeted `ivanilanicweb`, while a generated `WORKER_SELF_REFERENCE` binding targeted `ivan-portfolio` (the npm package name). Cloudflare could not resolve that service. The static Worker configuration removes that unnecessary binding and matches the actual Worker name. It also uses the already-generated responsive images, without the generated Next.js image service.
+
+## Alternative: create a Cloudflare Pages project
 
 1. Open [the Cloudflare dashboard](https://dash.cloudflare.com/) and choose your account.
 2. Open **Workers & Pages**, choose **Create application**, and select **Pages**.
@@ -28,7 +52,7 @@ The portfolio is a static Next.js site: its galleries, globe, marker animation, 
 
 Every subsequent push to `main` triggers a production deployment automatically. Other branches can receive Pages preview deployments.
 
-## Add a custom domain later
+## Add a custom domain to a Pages project
 
 1. Open **Workers & Pages → your Pages project → Custom domains**.
 2. Choose **Set up a custom domain**, enter the domain or subdomain you own, and continue.
@@ -41,10 +65,10 @@ For an apex domain such as `example.com`, Cloudflare may require the domain's zo
 ```powershell
 npm ci
 npm run build:cloudflare
-npx wrangler pages dev out
+npm run preview:cloudflare
 ```
 
-Wrangler is optional for a local Pages preview; the Git-connected dashboard deployment does not require a Wrangler installation, account token, or manual upload command in the repository. For normal development, continue using `npm run dev`.
+The preview command runs the static Worker locally. To preview the Pages alternative, use `npx wrangler pages dev out`. For normal Next.js development, continue using `npm run dev`. A manual `npm run deploy:cloudflare` requires Cloudflare CLI authentication; the dashboard Git build handles its deployment authorization automatically.
 
 ## How the deployment build works
 
