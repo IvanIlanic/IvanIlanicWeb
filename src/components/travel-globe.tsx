@@ -36,6 +36,9 @@ const wrapLongitude = (longitude: number) =>
   ((((longitude + 180) % 360) + 360) % 360) - 180;
 const coordinatesLabel = ([longitude, latitude]: View) =>
   `${Math.abs(latitude).toFixed(2)}° ${latitude < 0 ? "S" : "N"} · ${Math.abs(longitude).toFixed(2)}° ${longitude < 0 ? "W" : "E"}`;
+// Trigonometric results can differ in their last bits across JS engines/OSes.
+// Serialize every computed SVG coordinate at the same sub-pixel precision.
+const svgNumber = (value: number) => value.toFixed(3);
 
 function GlobeDrawing({
   world,
@@ -57,7 +60,7 @@ function GlobeDrawing({
         .precision(0.5),
     [view],
   );
-  const path = geoPath(projection);
+  const path = geoPath(projection).digits(3);
   const visible = (place: TravelPlace) =>
     geoDistance(view, place.coordinates) < Math.PI / 2 - 0.025;
   const selectedPoint = visible(selected)
@@ -135,8 +138,8 @@ function GlobeDrawing({
           return (
             <circle
               key={place.id}
-              cx={point[0]}
-              cy={point[1]}
+              cx={svgNumber(point[0])}
+              cy={svgNumber(point[1])}
               r={place.home ? 4.8 : 2.7}
               className={`globe-place${place.home ? ` globe-place-${place.home}` : ""}`}
             />
@@ -145,35 +148,35 @@ function GlobeDrawing({
         {selectedPoint && (
           <g className="globe-selected-place" data-active-marker={selected.id}>
             <circle
-              cx={selectedPoint[0]}
-              cy={selectedPoint[1]}
+              cx={svgNumber(selectedPoint[0])}
+              cy={svgNumber(selectedPoint[1])}
               r="17"
               fill="none"
               stroke="#efceab66"
             />
             <circle
-              cx={selectedPoint[0]}
-              cy={selectedPoint[1]}
+              cx={svgNumber(selectedPoint[0])}
+              cy={svgNumber(selectedPoint[1])}
               r="7"
               fill="#efceab"
               stroke="#142723"
               strokeWidth="2"
             />
             <path
-              d={`M${selectedPoint[0]} ${selectedPoint[1] - 10}L${labelX} ${labelY + 2}`}
+              d={`M${svgNumber(selectedPoint[0])} ${svgNumber(selectedPoint[1] - 10)}L${svgNumber(labelX)} ${svgNumber(labelY + 2)}`}
               fill="none"
               stroke="#efceab88"
             />
             <rect
-              x={labelX - 8}
-              y={labelY - 18}
-              width={labelWidth + 16}
+              x={svgNumber(labelX - 8)}
+              y={svgNumber(labelY - 18)}
+              width={svgNumber(labelWidth + 16)}
               height="30"
               rx="3"
               fill="#0e1e1ced"
               stroke="#b5c9b544"
             />
-            <text x={labelX} y={labelY + 2}>
+            <text x={svgNumber(labelX)} y={svgNumber(labelY + 2)}>
               {selected.name}
             </text>
           </g>
