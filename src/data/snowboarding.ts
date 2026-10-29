@@ -12,11 +12,9 @@ export const snowboarding = {
   ],
   favoriteTerrain: ["Powder", "Black runs"],
   goal: "In the coming years, I want to work toward becoming a snowboarding instructor. It’s a chance to keep progressing and, one day, help someone else find their confidence on the snow.",
-  // Add a personal photo to public/images/ and set its public path here,
-  // for example "/images/snowboarding-01.jpg". Describe the actual photo in alt.
   photo: {
-    src: null as string | null,
-    alt: "Snowboarding photograph",
+    src: "/images/Travel1.png",
+    alt: "Two snowboarders raising their arms beside a board on a sunlit snowy mountain",
     caption: "Days worth waiting for",
   },
 };

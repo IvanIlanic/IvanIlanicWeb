@@ -94,7 +94,7 @@ export function ProjectsSection() {
       aria-labelledby="projects-title"
     >
       <div className="section-label">
-        <span className="eyebrow">06 / PROBLEMS INTO POSSIBILITIES</span>
+        <span className="eyebrow">07 / PROBLEMS INTO POSSIBILITIES</span>
         <span className="eyebrow">PRODUCTS / LEARNING / SMALL BUSINESSES</span>
       </div>
       <Reveal className="section-heading">

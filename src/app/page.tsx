@@ -9,10 +9,13 @@ import { SnowboardingSection } from "@/components/snowboarding-section";
 import { ProjectsSection } from "@/components/projects-section";
 import { EditingStory } from "@/components/editing-story";
 import { TravelSection } from "@/components/travel-section";
+import { ProgrammingSection } from "@/components/programming-section";
+import { ProfileStructuredData } from "@/components/profile-structured-data";
 
 export default function Home() {
   return (
     <>
+      <ProfileStructuredData />
       <a href="#main" className="skip-link">
         Skip to content
       </a>
@@ -126,7 +129,7 @@ export default function Home() {
         <TravelSection />
         <DivingSection />
         <SnowboardingSection />
-
+        <ProgrammingSection />
         <ProjectsSection />
 
         <section
@@ -135,7 +138,7 @@ export default function Home() {
           aria-labelledby="contact-title"
         >
           <div className="section-label">
-            <span className="eyebrow">07 / THE NEXT CHAPTER</span>
+            <span className="eyebrow">08 / THE NEXT CHAPTER</span>
             <span className="eyebrow">
               <i className="status-dot" /> STARTS WITH A CONVERSATION
             </span>

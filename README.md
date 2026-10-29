@@ -75,7 +75,17 @@ The print gallery lives in `src/components/diving-photo-gallery.tsx`, with motio
 
 `src/data/snowboarding.ts` contains the story, current skills, favorite terrain, and instructor ambition. The section describes snowboarding being financially out of reach in childhood, loving it now, frontside/backside 180s, butter 360s, switch riding, jumps, powder, and black runs. Becoming an instructor is presented as a goal for the coming years, not a current qualification.
 
-A winter-themed illustration occupies the personal-photo slot until a photo is supplied. To add one, place your image in `public/images/` and change `snowboarding.photo.src` from `null` to a public path such as `"/images/snowboarding-01.jpg"`; update its `alt` and caption to match. The section component is `src/components/snowboarding-section.tsx`.
+The section uses Ivan's mountain photograph, `/images/Travel1.png`, also included in the travel journal. It retains its landscape proportions and color. To change it, edit `snowboarding.photo.src`, `alt`, and `caption` in the data file. The section component is `src/components/snowboarding-section.tsx`.
+
+## Programming and cybersecurity
+
+`src/data/programming.ts` contains four personal chapters: the freedom to solve problems with a laptop, UI design and human psychology, cybersecurity organising at Reykjavík University/CTFs/IoT exploration, and Ivan's changing relationship with programming after AI. The AI chapter is a personal reflection, with qualified language about generated-code security rather than a blanket performance claim.
+
+`src/components/programming-section.tsx` presents these as a responsive terminal interface. Tabs support pointer/touch, arrow keys, Home/End, and proper tab/panel relationships. All chapter text is present in the rendered HTML; it isn't streamed character by character or fetched after interaction. The command line, text entrance, and observe/build/question/improve sequence animate briefly when first scrolled into view and on note selection. `prefers-reduced-motion` removes the animations. There are no extra dependencies, background timers, actual commands, or simulated live security scans. Styles live in `programming-section.css`.
+
+## Search visibility
+
+See [SEARCH.md](./SEARCH.md) for Cloudflare build variables, Google Search Console verification, sitemap submission, and indexing checks. Set `SITE_URL` to the real production HTTPS origin to enable the canonical URL and populate the sitemap. `GOOGLE_SITE_VERIFICATION` optionally adds Google's HTML verification tag. Both are public build-time values. The site never invents a production URL when it is unset. Google indexing is a separate step and is not guaranteed by metadata changes.
 
 ## Problems and projects
 

@@ -22,6 +22,8 @@ The current Cloudflare project is a Worker named `ivanilanicweb`. Use Workers St
 
 The deployment and version-upload scripts explicitly pass `--config wrangler.worker.jsonc`, which prevents framework auto-configuration from generating a different Next.js server Worker. Wrangler is versioned in `package.json` and installed automatically by the Git build. No account token or application secret needs adding to the repository; Cloudflare supplies deployment authorization for its Git integration.
 
+For search visibility, set the optional public **build** variable `SITE_URL` to your preferred production HTTPS origin. `GOOGLE_SITE_VERIFICATION` can hold the HTML-tag verification value from Google Search Console. Rebuild after changing either variable; these are not runtime Worker bindings. Follow [SEARCH.md](./SEARCH.md) for verification and indexing instructions.
+
 ### Why error 10143 occurred
 
 The failed deployment targeted `ivanilanicweb`, while a generated `WORKER_SELF_REFERENCE` binding targeted `ivan-portfolio` (the npm package name). Cloudflare could not resolve that service. The static Worker configuration removes that unnecessary binding and matches the actual Worker name. It also uses the already-generated responsive images, without the generated Next.js image service.

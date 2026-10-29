@@ -9,6 +9,7 @@ const links = [
   ["Travel", "#journeys"],
   ["Diving", "#diving"],
   ["Snowboarding", "#snowboarding"],
+  ["Programming & cybersecurity", "#programming"],
   ["Problems & projects", "#projects"],
   ["Contact", "#contact"],
 ];

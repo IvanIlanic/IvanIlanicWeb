@@ -1,0 +1,45 @@
+# Help people find Ivan’s portfolio on Google
+
+The site includes a descriptive title and summary, the accented and unaccented name, visible hometown/current-city context, Person/ProfilePage structured data, crawl directives, and static search metadata. These help search engines understand the page; indexing and ranking are still controlled by Google.
+
+## 1. Set the preferred public address
+
+Use the production **Visit** URL from **Cloudflare → Workers & Pages → ivanilanicweb**, or a custom domain you have already connected. Use the same address consistently. A personal domain can make the address easier to recognise and share; buying one is not required for indexing.
+
+In the Worker's **Settings → Build → Variables and secrets** (the build environment), add a plain-text variable:
+
+```text
+SITE_URL = your full HTTPS origin
+```
+
+For example, the value should have the form `https://your-domain.com`, with your real domain instead of the example. Include `https://`, with no page path, query, or fragment. Do not use a localhost, version-preview, or temporary deployment address. This is a **build variable**, not a runtime Worker binding. Rebuild the latest `main` commit after saving it.
+
+`src/lib/site.ts` validates this origin and shares it between the canonical URL, Open Graph metadata, structured profile data, `robots.txt`, and `sitemap.xml`. Without `SITE_URL`, the site still builds and allows crawling, but deliberately omits a canonical address and leaves the sitemap empty rather than advertising an invented address. For local development, copy `.env.example` to `.env.local` and supply the actual origin if needed.
+
+## 2. Verify ownership in Google Search Console
+
+1. Open [Google Search Console](https://search.google.com/search-console/).
+2. Add a **URL prefix** property using the exact production HTTPS address. This works for a Cloudflare-provided URL as well as a custom domain. A **Domain** property is an alternative for a domain you control, verified through DNS.
+3. For URL-prefix verification, choose **HTML tag**. Copy only the `content` value from Google's verification tag.
+4. Add another Cloudflare **build** variable named `GOOGLE_SITE_VERIFICATION` with that value. It is public verification metadata; do not paste account passwords or API keys.
+5. Rebuild the latest commit, confirm the tag is present in the live page source, then click **Verify** in Search Console. Keep the verification value configured after verification.
+
+## 3. Request indexing
+
+1. Open the live `/robots.txt` URL. It should allow `/` and list your production `/sitemap.xml` address.
+2. Open `/sitemap.xml`. It should list the homepage once. The portfolio's sections are anchors on that single page, so they do not need separate sitemap entries.
+3. In Search Console → **Sitemaps**, submit `sitemap.xml`.
+4. In **URL inspection**, enter the homepage address, choose **Test live URL**, and then **Request indexing** if eligible.
+5. If Google's live test reports a block, check the reported reason: the production page should be public, return HTTP 200, and have no `noindex` response header. Cloudflare Access, bot challenges, or preview-deployment policies can prevent crawling independently of the HTML metadata. Adjust the specific reported setting rather than disabling protection broadly.
+
+Google may take days or weeks to discover/index a new site, and neither a sitemap nor an indexing request guarantees inclusion or a particular ranking. Search Console's indexing report gives better evidence than searching your name alone. Link the preferred website address from your Instagram bio and other public profiles you use so people and crawlers can discover it.
+
+## Implementation notes
+
+- Search configuration: `src/lib/site.ts`; public biography and summary: `src/data/profile.ts`.
+- Metadata: `src/app/layout.tsx`; structured data: `src/components/profile-structured-data.tsx`.
+- Crawl endpoints: `src/app/robots.ts` and `src/app/sitemap.ts`, exported as static files for Cloudflare.
+- Cache Components/partial prefetching are not enabled: this portfolio is pre-rendered and the crawl endpoints use static route handlers. Interactive galleries and other browser features are unchanged.
+- An optional verification token is read at build time. There is no Google account integration or automated submission in this repository.
+
+References: [Google's indexing guide](https://developers.google.com/search/docs/fundamentals/get-on-google), [sitemaps](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview), and [canonical URLs](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls).

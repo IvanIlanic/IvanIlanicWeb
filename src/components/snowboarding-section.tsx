@@ -33,49 +33,12 @@ export function SnowboardingSection() {
         <Reveal>
           <figure className="snow-photo">
             <div className="snow-photo-media">
-              {snowboarding.photo.src ? (
-                <Image
-                  src={snowboarding.photo.src}
-                  alt={snowboarding.photo.alt}
-                  fill
-                  sizes="(max-width: 600px) 100vw, 50vw"
-                />
-              ) : (
-                <div className="snow-photo-placeholder">
-                  <span className="eyebrow">THE WINTER CHAPTER</span>
-                  <svg
-                    aria-hidden="true"
-                    viewBox="0 0 600 500"
-                    fill="none"
-                    className="snow-ridgeline"
-                  >
-                    <path
-                      d="m-20 340 145-125 70 65L335 90l285 245"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                    />
-                    <path
-                      d="m195 280 75-40 65-150 22 134 63 49 41-29M125 215l-10 88 80-23M-20 390l145-87 130 82 102-161 130 153 133 15M-20 450l195-94 80 29 132-33 140 109 93-20"
-                      stroke="currentColor"
-                      strokeOpacity=".4"
-                    />
-                    <path
-                      d="M333 260c-110 49 130 41-19 96s-13 49-65 101"
-                      stroke="currentColor"
-                      strokeOpacity=".65"
-                      strokeDasharray="4 8"
-                    />
-                  </svg>
-                  <div>
-                    <p>
-                      More turns.
-                      <br />
-                      <em>More possibilities.</em>
-                    </p>
-                    <span className="eyebrow">PHOTOGRAPH TO COME</span>
-                  </div>
-                </div>
-              )}
+              <Image
+                src={snowboarding.photo.src}
+                alt={snowboarding.photo.alt}
+                fill
+                sizes="(max-width: 600px) calc(100vw - 48px), 45vw"
+              />
             </div>
             <figcaption>
               <span>{snowboarding.photo.caption}</span>

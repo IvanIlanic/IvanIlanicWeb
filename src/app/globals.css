@@ -1716,44 +1716,11 @@ em {
 .snow-photo-media {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 0.95;
+  aspect-ratio: 4 / 3;
   background: #1d2a36;
 }
 .snow-photo-media img {
   object-fit: cover;
-}
-.snow-photo-placeholder {
-  position: absolute;
-  inset: 0;
-  padding: 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: linear-gradient(160deg, #344b5e, #18232e 80%);
-  color: #cbdbe8;
-}
-.snow-photo-placeholder > .eyebrow {
-  font-size: 8px;
-  letter-spacing: 0.2em;
-}
-.snow-ridgeline {
-  position: absolute;
-  inset: 10% 0 auto;
-  width: 100%;
-  height: auto;
-  opacity: 0.55;
-}
-.snow-photo-placeholder > div {
-  position: relative;
-}
-.snow-photo-placeholder p {
-  font-size: clamp(26px, 3.2vw, 48px);
-  line-height: 1.1;
-  letter-spacing: -0.04em;
-  margin-bottom: 20px;
-}
-.snow-photo-placeholder > div > .eyebrow {
-  font-size: 8px;
 }
 .snow-photo figcaption {
   display: flex;
@@ -1862,15 +1829,6 @@ em {
   }
   .snow-story-copy .snow-lead {
     font-size: 21px;
-  }
-  .snow-photo-media {
-    aspect-ratio: 1;
-  }
-  .snow-photo-placeholder {
-    padding: 20px;
-  }
-  .snow-photo-placeholder p {
-    font-size: 34px;
   }
   .snow-photo figcaption {
     flex-wrap: wrap;
