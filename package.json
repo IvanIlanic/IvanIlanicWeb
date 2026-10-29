@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "build:cloudflare": "node scripts/build-cloudflare.mjs",
+    "deploy:cloudflare": "wrangler deploy --config wrangler.worker.jsonc",
+    "upload:cloudflare": "wrangler versions upload --config wrangler.worker.jsonc",
+    "preview:cloudflare": "wrangler dev --config wrangler.worker.jsonc"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "^5.3.0",
@@ -25,7 +29,9 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.3",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.154.0"
   }
 }

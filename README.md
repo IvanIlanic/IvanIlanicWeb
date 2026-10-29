@@ -36,7 +36,7 @@ Browser checks for this iteration: gallery filtering; open/close lightbox; previ
 - `src/app/layout.tsx`: local fonts and page metadata.
 - `public/images/`: Ivan’s hero, diving, travel, and gallery photographs alongside the remaining design samples. The reference project’s MIT notice is retained here.
 
-The default hero and selected photography gallery use Ivan’s own photographs. The alternate hero scenes and fullscreen travel introduction still use credited design samples. Personal stories and travel locations are based on information supplied by Ivan. The GitHub profile is the initial contact destination; no contact email is invented.
+The default hero and selected photography gallery use Ivan’s own photographs. The alternate hero scenes and fullscreen travel introduction still use credited design samples. Personal stories and travel locations are based on information supplied by Ivan. The contact section publishes Ivan’s supplied email and Instagram, with an invitation to share ideas and collaborate.
 
 ## Why this structure?
 
@@ -44,7 +44,7 @@ The page stays a Server Component. Only interactions and animated reveals use cl
 
 Motion animates transforms and opacity once as content enters view. On mouse movement (including on touch-capable laptops), the hero landscape follows the cursor with a noticeable opposite offset while the title moves more gently in the other direction. Overscan hides image edges. Spring motion values keep pointer updates outside React rendering; movement resets on pointer exit or window blur and ignores touch gestures and turns off for reduced motion, including preference changes while the page is open. The CSS hero entrance and anchor scrolling respect reduced-motion preferences. GSAP, Lenis, and React Three Fiber are intentionally deferred until a specific interaction calls for them.
 
-Future additions can include personal images for the alternate hero scenes, a contact destination, films, and an achievements timeline.
+Future additions can include personal images for the alternate hero scenes, films and an achievements timeline.
 
 ## Add your photos
 
@@ -95,7 +95,7 @@ The photography section includes `src/components/editing-story.tsx`: a four-stag
 
 `src/data/editing-story.ts` holds the image, alt text, captions, step notes, duration, and subject-mask paths. The current image is Ivan’s full-resolution `public/images/Vehicle.jpg`. The earlier AI-retouched demonstration PNG is no longer used in this section. Replace `image.src` and update the caption when changing the photo; align the masks if the crop changes. The paths use a 640 × 960 portrait coordinate system. Runtime SVG layers illustrate the editing decisions without modifying the image file. The light adjustment uses a gradient-masked exposure filter on the same photo, rather than a painted flare; professional retouching may require refined masks or a separately prepared final image.
 
-The optimized image URL from Next.js is shared by all SVG layers. It is requested near the viewport; animations run only for this finite sequence. No GSAP, canvas, or additional animation dependencies are installed. All layers reuse the optimized `Vehicle.jpg` request.
+The vehicle is a native HTML image beneath a decorative SVG overlay, so displaying the photo does not depend on SVG `<use>` cloning or SVG image load events. `getImageProps` supplies one optimized texture shared by that image and three direct SVG image layers; the `unoptimized` flag on the base `<Image>` prevents optimizing that already-optimized URL again. The texture is sized for the small demonstration frame to reduce mobile decoding/compositing memory. Explicit SVG mask bounds and both `href`/`xlinkHref` make the editing layers more robust across browsers. The base photo is lazy-loaded, the edit layers are populated near the viewport, and the sequence waits for the actual photo to load. Load failures show a clear status rather than an endless loading label; animations run only for this finite sequence. No GSAP, canvas, or additional animation dependencies are installed. All layers reuse the optimized `Vehicle.jpg` request.
 
 ## Travel journal and photo booth
 
@@ -118,3 +118,11 @@ The globe can be dragged with a mouse or horizontally on touch, while vertical t
 “The world, as I see it” uses all five personal JPEG photographs in `public/images/Gallery/`: Carmeet6-116, Cocktailweek-07, DSC06136, MicroConf2026-03, and TravelPerlan-02. The records in `src/data/portfolio.ts` supply descriptive alt text, editorial titles, categories, original dimensions, and Ivan’s credit. Captions do not invent locations or the identities of photographed people. Categories are Automotive, Portraits, and Events; counts come from the records. Photographs retain their native proportions and color. An odd final frame spans the editorial grid, while a single filtered photograph stays at a comfortable width.
 
 The viewer supports all five frames, arrow keys, Escape, focus restoration, and scroll locking. Its full-size image mounts only when the viewer opens. Next.js serves responsive optimized images from the unchanged originals, including the large source files. Placeholder copy and gallery Unsplash credits have been removed; the footer continues crediting the lake and ocean samples still used by other sections. Archived alpine and maple sample files remain in the repository, originally credited to John Lee and Guillaume Jaillet respectively via Unsplash and the Tailwind Next.js Starter Blog.
+
+## Deploy to Cloudflare
+
+Follow [CLOUDFLARE.md](./CLOUDFLARE.md) for dashboard settings for the existing `ivanilanicweb` Worker and the Pages alternative. Both use `npm run build:cloudflare` to generate the static `out/` directory. The Worker deploy command is `npm run deploy:cloudflare`, which explicitly uses `wrangler.worker.jsonc`; preview/version builds use `npm run upload:cloudflare`. The configuration serves static assets with no service self-reference or Images binding. The build generates responsive WebP images and checks asset limits. No runtime Next.js server, Cloudflare Images subscription, or database is required. Node.js 24 is selected by `.node-version`; Sharp and Wrangler are versioned development dependencies. Regular `npm run dev` and `npm run build` retain their existing Next.js behavior.
+
+## Contact details
+
+`src/data/profile.ts` holds the public email `ilanicivan@gmail.com`, Instagram `https://www.instagram.com/ivan_ilanic/`, and the invitation to share ideas, projects, and collaborations. The contact section uses a native `mailto:` link and an Instagram link that opens in a new tab. The previous GitHub contact link and decorative asterisks have been removed.
