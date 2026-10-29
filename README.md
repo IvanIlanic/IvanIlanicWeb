@@ -85,7 +85,7 @@ The section uses Ivan's mountain photograph, `/images/Travel1.png`, also include
 
 ## Search visibility
 
-See [SEARCH.md](./SEARCH.md) for Cloudflare build variables, Google Search Console verification, sitemap submission, and indexing checks. Set `SITE_URL` to the real production HTTPS origin to enable the canonical URL and populate the sitemap. `GOOGLE_SITE_VERIFICATION` optionally adds Google's HTML verification tag. Both are public build-time values. The site never invents a production URL when it is unset. Google indexing is a separate step and is not guaranteed by metadata changes.
+See [SEARCH.md](./SEARCH.md) for Google Search Console verification, sitemap submission, and indexing checks. The canonical URL and sitemap default to Ivan's confirmed public domain, `https://ivanilanic.com`; no Cloudflare variable is required for that address. `SITE_URL` optionally overrides the origin, and `GOOGLE_SITE_VERIFICATION` optionally adds Google's HTML verification tag. Both are public build-time values. Google indexing is a separate step and is not guaranteed by metadata changes.
 
 ## Problems and projects
 
