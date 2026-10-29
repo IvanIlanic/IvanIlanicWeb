@@ -43,7 +43,7 @@ export const photographs: Photograph[] = [
   },
   {
     id: "03",
-    title: "Between moments",
+    title: "Sexy looking fellow",
     category: "Portraits",
     src: "/images/Gallery/DSC06136.jpg",
     alt: "A man in a black T-shirt looking toward the camera beside a warmly lit bar",
@@ -54,7 +54,7 @@ export const photographs: Photograph[] = [
   },
   {
     id: "04",
-    title: "Beyond the room",
+    title: "Amazed by nature",
     category: "Events",
     src: "/images/Gallery/MicroConf2026-03.jpg",
     alt: "People in outdoor jackets smiling and talking beside steam rising from a rocky landscape",

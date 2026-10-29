@@ -7,9 +7,9 @@ export type DivePhoto = {
 
 export const diving = {
   story: [
-    "I’ve fallen in love with scuba diving. Underwater, the noise of everyday life falls away. There’s a kind of peace in slowing down, staying present, and paying attention to every breath.",
-    "What draws me in is the balance: feeling calm and in control while knowing the environment demands respect. Conditions can become critical, and that makes awareness, preparation, and good decisions matter. For me, diving brings adventure and discipline into the same moment.",
-    "I’ve completed my Open Water Diver and Advanced Open Water Diver certifications. This summer, I’m working toward my next goal: Divemaster.",
+    "Wanna hit another dimension, your should try scuba diving. I would even compare it to Ricks portal gun HAHA!!",
+    "As a kid I was surrounded by the sea, that led to unhealty oppsesion with breath diving, discovering the underwater world was an incredible never ending novel of fish, weird looking sea objects and grass. Then one day I saw a bunch of dudes in blacksuits and big tanks on their back. I asked my dad who are those pals. Its the divers son, the ultimative exploreres of the sea. From that day, I was hooked. ",
+    "I have completed my Open water and Advanced Open Water diver license and how next big step is the DiveMaster.",
   ],
   qualifications: [
     { title: "Open Water Diver", status: "Completed", completed: true },
@@ -33,18 +33,18 @@ export const divePhotos: DivePhoto[] = [
     id: "01",
     src: "/images/Dive1.jpg",
     alt: "Two scuba divers in masks and regulators posing together underwater",
-    caption: "Below the surface",
+    caption: "Diving with me wify<3",
   },
   {
     id: "02",
     src: "/images/Dive2.jpg",
     alt: "A group of scuba divers hovering above a submerged structure in blue-green water",
-    caption: "A different kind of quiet",
+    caption: "Diving on Krk by the shipwreck GRK",
   },
   {
     id: "03",
     src: "/images/Dive3.jpg",
     alt: "A diver in scuba equipment making a playful hand gesture outdoors",
-    caption: "More to discover",
+    caption: "Some dumbass posing, oh wait thats me",
   },
 ];
