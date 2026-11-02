@@ -36,7 +36,7 @@ Browser checks for this iteration: gallery filtering; open/close lightbox; previ
 - `src/app/layout.tsx`: local fonts and page metadata.
 - `public/images/`: Ivan’s hero, diving, travel, and gallery photographs alongside the remaining design samples. The reference project’s MIT notice is retained here.
 
-The default hero and selected photography gallery use Ivan’s own photographs. The alternate hero scenes and fullscreen travel introduction still use credited design samples. Personal stories and travel locations are based on information supplied by Ivan. The contact section publishes Ivan’s supplied email and Instagram, with an invitation to share ideas and collaborate.
+The default hero and selected photography gallery use Ivan’s own photographs. The alternate hero scenes use credited design samples. Personal stories and travel locations are based on information supplied by Ivan. The contact section publishes Ivan’s supplied email and Instagram, with an invitation to share ideas and collaborate.
 
 ## Why this structure?
 
@@ -109,7 +109,7 @@ The vehicle is a native HTML image beneath a decorative SVG overlay, so displayi
 
 ## Travel journal and photo booth
 
-The former journal placeholder is now a personal travel story about openness to opportunities, unfamiliar places, and stepping outside a comfort zone. It follows the full-screen travel introduction and links from the Travel navigation item.
+The former journal placeholder is now a personal travel story about openness to opportunities, unfamiliar places, and stepping outside a comfort zone. It follows the photography section and links directly from the Travel navigation item. The fullscreen “Less ordinary. More outside.” introduction has been removed.
 
 `src/data/travel.ts` contains the story and all 18 personal travel photographs supplied by Ivan under `public/images/Travel*.png`. Each record has descriptive alternative text, a short caption, and an optional `objectPosition` to keep subjects visible in the cropped previews. Edit the array to reorder the collection, change captions, or add photographs. No dates or unverified itineraries are invented.
 

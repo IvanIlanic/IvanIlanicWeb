@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Hero } from "@/components/hero";
 import { Reveal } from "@/components/reveal";
 import { Gallery } from "@/components/gallery";
@@ -90,42 +89,6 @@ export default function Home() {
           <EditingStory />
         </section>
 
-        <section
-          id="journeys"
-          className="journey"
-          aria-labelledby="journey-title"
-        >
-          <Image
-            src="/images/ocean.jpg"
-            alt="Open water stretching toward the horizon"
-            fill
-            sizes="(max-width: 600px) 160vh, 100vw"
-            className="journey-image"
-          />
-          <div className="journey-shade" />
-          <div className="journey-content">
-            <span className="eyebrow">03 / THE LONG WAY HOME</span>
-            <Reveal>
-              <h2 id="journey-title">
-                Less ordinary.
-                <br />
-                <em>More outside.</em>
-              </h2>
-              <p>
-                For unfamiliar places, new opportunities,
-                <br />
-                and a little room for the unexpected.
-              </p>
-            </Reveal>
-            <a className="text-link" href="#journal">
-              The travel journal <Arrow direction="down" />
-            </a>
-          </div>
-          <span className="journey-note eyebrow">
-            AN OPEN INVITATION TO EXPLORE
-          </span>
-        </section>
-
         <TravelSection />
         <DivingSection />
         <SnowboardingSection />
@@ -194,7 +157,7 @@ export default function Home() {
           <summary>Photography & image credits</summary>
           <p>
             Selected gallery photography by Ivan Ilanić. The alternate hero
-            scenes and fullscreen travel introduction still use design samples.
+            scenes use design samples.
             Lake:{" "}
             <a href="https://unsplash.com/@tjholowaychuk">Tj Holowaychuk</a>.
             Ocean: <a href="https://unsplash.com/@yucar">YUCAR FotoGrafik</a>.

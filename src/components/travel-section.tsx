@@ -12,7 +12,7 @@ export function TravelSection() {
       aria-labelledby="travel-title"
     >
       <div className="section-label">
-        <span className="eyebrow">THE TRAVEL JOURNAL</span>
+        <span className="eyebrow">03 / THE TRAVEL JOURNAL</span>
         <span className="eyebrow">OPEN PLANS. OPEN POSSIBILITIES.</span>
       </div>
       <TravelPhotoBooth photos={travelPhotos}>

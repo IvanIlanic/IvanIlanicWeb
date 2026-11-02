@@ -602,47 +602,6 @@ em {
     margin-top: 18px;
   }
 }
-.journey {
-  min-height: 680px;
-  height: 85svh;
-  position: relative;
-  display: flex;
-  align-items: center;
-  overflow: clip;
-}
-.journey-image {
-  object-fit: cover;
-  filter: grayscale(1);
-}
-.journey-shade {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, #101010bb, #10101030),
-    linear-gradient(0deg, #101010a8, transparent 35%);
-}
-.journey-content {
-  position: relative;
-  padding: 65px var(--gutter);
-}
-.journey-content h2 {
-  font-size: clamp(62px, 8vw, 130px);
-  line-height: 1;
-  letter-spacing: -0.055em;
-  margin: 65px 0 30px;
-}
-.journey-content p {
-  font-size: 14px;
-  line-height: 1.9;
-  margin-bottom: 38px;
-}
-.journey-note {
-  position: absolute;
-  right: var(--gutter);
-  bottom: 45px;
-  writing-mode: vertical-rl;
-  font-size: 8px;
-}
 .travel-section {
   overflow: clip;
   background:
@@ -2367,21 +2326,6 @@ em {
   }
   .photo-caption h3 {
     font-size: 17px;
-  }
-  .journey {
-    min-height: 650px;
-    height: 85svh;
-  }
-  .journey-content h2 {
-    font-size: 66px;
-    margin-top: 65px;
-  }
-  .journey-content p {
-    font-size: 13px;
-  }
-  .journey-note {
-    bottom: 25px;
-    font-size: 7px;
   }
   .contact h2 {
     font-size: 59px;
