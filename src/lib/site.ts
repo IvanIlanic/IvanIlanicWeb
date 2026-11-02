@@ -1,6 +1,6 @@
-// Set SITE_URL to the preferred public origin in Cloudflare's build variables.
-// Never guess a workers.dev subdomain or publish localhost as the canonical URL.
-const configuredUrl = process.env.SITE_URL?.trim();
+// Ivan's preferred public origin; SITE_URL remains an optional build override.
+// Keep the custom domain canonical when serving the same site on workers.dev.
+const configuredUrl = process.env.SITE_URL?.trim() || "https://ivanilanic.com";
 
 function publicOrigin(value: string | undefined): string | undefined {
   if (!value) return undefined;

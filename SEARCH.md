@@ -2,24 +2,24 @@
 
 The site includes a descriptive title and summary, the accented and unaccented name, visible hometown/current-city context, Person/ProfilePage structured data, crawl directives, and static search metadata. These help search engines understand the page; indexing and ranking are still controlled by Google.
 
-## 1. Set the preferred public address
+## 1. Preferred public address
 
-Use the production **Visit** URL from **Cloudflare → Workers & Pages → ivanilanicweb**, or a custom domain you have already connected. Use the same address consistently. A personal domain can make the address easier to recognise and share; buying one is not required for indexing.
+Ivan's confirmed preferred address is **https://ivanilanic.com**. It is configured in `src/lib/site.ts` and used for the canonical URL, Open Graph metadata, structured profile data, `robots.txt`, and `sitemap.xml`. No Cloudflare environment variable is required for this address. The deployment must serve the site publicly on that domain.
 
-In the Worker's **Settings → Build → Variables and secrets** (the build environment), add a plain-text variable:
+If a `SITE_URL` build variable was set previously, remove it or set it to the same address in **Cloudflare → Workers & Pages → ivanilanicweb → Settings → Build → Variables and secrets**:
 
 ```text
-SITE_URL = your full HTTPS origin
+SITE_URL = https://ivanilanic.com
 ```
 
-For example, the value should have the form `https://your-domain.com`, with your real domain instead of the example. Include `https://`, with no page path, query, or fragment. Do not use a localhost, version-preview, or temporary deployment address. This is a **build variable**, not a runtime Worker binding. Rebuild the latest `main` commit after saving it.
+This optional override is a **build variable**, not a runtime Worker binding. Use an HTTPS origin without a page path, query, or fragment. Rebuild the latest `main` commit after changing it. Copies served on a Cloudflare-provided address should keep `https://ivanilanic.com` as the preferred canonical origin.
 
-`src/lib/site.ts` validates this origin and shares it between the canonical URL, Open Graph metadata, structured profile data, `robots.txt`, and `sitemap.xml`. Without `SITE_URL`, the site still builds and allows crawling, but deliberately omits a canonical address and leaves the sitemap empty rather than advertising an invented address. For local development, copy `.env.example` to `.env.local` and supply the actual origin if needed.
+After deployment, check [robots.txt](https://ivanilanic.com/robots.txt) and [sitemap.xml](https://ivanilanic.com/sitemap.xml). The sitemap should contain `https://ivanilanic.com/` once. For local development, `.env.example` documents the optional overrides.
 
 ## 2. Verify ownership in Google Search Console
 
 1. Open [Google Search Console](https://search.google.com/search-console/).
-2. Add a **URL prefix** property using the exact production HTTPS address. This works for a Cloudflare-provided URL as well as a custom domain. A **Domain** property is an alternative for a domain you control, verified through DNS.
+2. Add a **URL prefix** property for `https://ivanilanic.com/`. A **Domain** property for `ivanilanic.com` is an alternative, verified through DNS.
 3. For URL-prefix verification, choose **HTML tag**. Copy only the `content` value from Google's verification tag.
 4. Add another Cloudflare **build** variable named `GOOGLE_SITE_VERIFICATION` with that value. It is public verification metadata; do not paste account passwords or API keys.
 5. Rebuild the latest commit, confirm the tag is present in the live page source, then click **Verify** in Search Console. Keep the verification value configured after verification.

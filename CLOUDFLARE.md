@@ -22,7 +22,7 @@ The current Cloudflare project is a Worker named `ivanilanicweb`. Use Workers St
 
 The deployment and version-upload scripts explicitly pass `--config wrangler.worker.jsonc`, which prevents framework auto-configuration from generating a different Next.js server Worker. Wrangler is versioned in `package.json` and installed automatically by the Git build. No account token or application secret needs adding to the repository; Cloudflare supplies deployment authorization for its Git integration.
 
-For search visibility, set the optional public **build** variable `SITE_URL` to your preferred production HTTPS origin. `GOOGLE_SITE_VERIFICATION` can hold the HTML-tag verification value from Google Search Console. Rebuild after changing either variable; these are not runtime Worker bindings. Follow [SEARCH.md](./SEARCH.md) for verification and indexing instructions.
+The preferred search address is already configured as `https://ivanilanic.com`; no `SITE_URL` variable is required. If an older `SITE_URL` build variable is present, remove it or set it to `https://ivanilanic.com`, since it overrides the default. The optional public **build** variable `GOOGLE_SITE_VERIFICATION` can hold the HTML-tag verification value from Google Search Console. Rebuild after changing build variables; these are not runtime Worker bindings. Follow [SEARCH.md](./SEARCH.md) for verification and indexing instructions.
 
 ### Why error 10143 occurred
 
