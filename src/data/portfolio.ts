@@ -217,7 +217,7 @@ const gallerySeries: GallerySeries[] = [
 ];
 
 const featuredFilenames = [
-  "Bruno Bar Edit-13.jpg",
+  "Bruno Bar Edit-11.jpg",
   "Cocktailweek-07.jpg",
   "HoltFood-12.jpg",
   "Carmeet6-116.jpg",
