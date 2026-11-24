@@ -7,8 +7,8 @@
 .programming-heading h2 em {
   color: var(--terminal-green);
 }
-.programming-heading > p {
-  color: var(--terminal-muted);
+.programming-heading .section-quote blockquote {
+  color: var(--terminal-green);
 }
 .terminal {
   border: 1px solid #79967855;

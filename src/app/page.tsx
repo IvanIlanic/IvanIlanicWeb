@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Hero } from "@/components/hero";
 import { Reveal } from "@/components/reveal";
 import { Gallery } from "@/components/gallery";
@@ -20,6 +21,9 @@ export default function Home() {
       </a>
       <Hero />
       <main id="main">
+        <div className="home-intro">
+          <p>{profile.introduction}</p>
+        </div>
         <section
           id="work"
           className="work section-pad"
@@ -34,15 +38,30 @@ export default function Home() {
 
         <section
           id="about"
-          className="about section-pad"
+          className="about about-layout section-pad"
           aria-labelledby="about-title"
         >
           <Reveal>
             <h2 id="about-title" className="statement">Behind the camera.</h2>
-            <p className="profile-lead">{profile.introduction}</p>
+            <p className="profile-lead">
+              Photography is one part of what I do. Explore what I’m building
+              in software and cybersecurity.
+            </p>
             <a href="#projects" className="text-link">
               See my other projects <Arrow />
             </a>
+          </Reveal>
+          <Reveal>
+            <figure className="about-photo">
+              <Image
+                src="/images/Gallery/DSC06136.jpg"
+                alt="A man in a black T-shirt beside a warmly lit bar"
+                width={4672}
+                height={7008}
+                sizes="(max-width: 700px) calc(100vw - 48px), 38vw"
+              />
+              <figcaption>Portrait study</figcaption>
+            </figure>
           </Reveal>
         </section>
 

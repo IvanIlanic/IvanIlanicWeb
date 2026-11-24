@@ -209,7 +209,7 @@ export function EditingStory() {
         <h3 id="editing-story-title">
           Behind <em>the edit.</em>
         </h3>
-        <figure className="editing-quote">
+        <figure className="section-quote">
           <blockquote>
             “To see clearly is poetry, prophecy, and religion all in one.”
           </blockquote>

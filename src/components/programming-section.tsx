@@ -46,11 +46,13 @@ export function ProgrammingSection() {
           <br />
           <em>what if?</em>
         </h2>
-        <p>
-          From writing the code
-          <br />
-          to questioning how it works.
-        </p>
+        <figure className="section-quote">
+          <blockquote>
+            “We can only see a short distance ahead, but we can see plenty
+            there that needs to be done.”
+          </blockquote>
+          <figcaption>Alan Turing, <cite>Computing Machinery and Intelligence</cite></figcaption>
+        </figure>
       </div>
 
       <div

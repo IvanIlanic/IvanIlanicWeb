@@ -19,10 +19,10 @@ export function SnowboardingSection() {
           <br />
           <em>Worth the wait.</em>
         </h2>
-        <p>
-          A board. A mountain.
-          <br />A reason to keep going.
-        </p>
+        <figure className="section-quote">
+          <blockquote>“The mountains are calling and I must go.”</blockquote>
+          <figcaption>John Muir, letter to his sister Sarah</figcaption>
+        </figure>
       </Reveal>
 
       <div className="snow-story">

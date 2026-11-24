@@ -11,7 +11,7 @@ export function TravelSection() {
       aria-labelledby="travel-title"
     >
       <div className="section-label">
-        <span className="eyebrow">THE TRAVEL JOURNAL</span>
+        <span className="eyebrow">TRAVEL</span>
       </div>
       <TravelPhotoBooth photos={travelPhotos}>
         <div className="travel-copy">
@@ -21,6 +21,11 @@ export function TravelSection() {
               <br />
               <em>the unexpected.</em>
             </h2>
+            <p className="travel-intro">
+              I like travelling with room in the plan for something unexpected.
+              A new place, a conversation, or a chance to take a different route
+              can change the direction of a trip. That’s part of what I enjoy.
+            </p>
           </Reveal>
         </div>
       </TravelPhotoBooth>

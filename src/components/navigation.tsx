@@ -38,9 +38,10 @@ export function Navigation() {
           ILANIĆ
         </span>
       </a>
-      <span className="header-edition eyebrow">
-        "Giving up is not in the blood, sir. ~  Nirmal "Nimsdai" Purja"
-      </span>
+      <figure className="header-quote">
+        <blockquote>“Giving up is not in the blood, sir.”</blockquote>
+        <figcaption>Nirmal “Nimsdai” Purja</figcaption>
+      </figure>
       <button
         ref={toggle}
         className="menu-toggle"
