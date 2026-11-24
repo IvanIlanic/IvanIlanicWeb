@@ -10,7 +10,7 @@ export function DivingSection() {
       aria-labelledby="diving-title"
     >
       <div className="section-label">
-        <span className="eyebrow">04 / BENEATH THE SURFACE</span>
+        <span className="eyebrow">BENEATH THE SURFACE</span>
         <span className="eyebrow">SCUBA DIVING · A PERSONAL JOURNEY</span>
       </div>
       <Reveal className="section-heading diving-heading">
@@ -19,10 +19,6 @@ export function DivingSection() {
           <br />
           <em>my quiet.</em>
         </h2>
-        <p>
-          A calmer mind.
-          <br />A different world.
-        </p>
       </Reveal>
 
       <div className="diving-story">

@@ -6,14 +6,6 @@ export type TravelPhoto = {
   caption: string;
 };
 
-export const travel = {
-  story: [
-    "I love travelling with enough room in the plan for something unexpected. A new place, a conversation, or an opportunity I hadn’t considered can change the direction of a trip—and that’s part of what I enjoy.",
-    "Being outside my comfort zone isn’t always easy, but it makes me pay attention. I learn to be more adaptable, meet people with different perspectives, and say yes to experiences I might otherwise miss. I want to stay open to what a place can teach me, even when it isn’t what I expected.",
-  ],
-  thought: "I don’t need every turn mapped out.",
-};
-
 // Personal travel photographs. Captions describe moments without inventing dates or itineraries.
 export const travelPhotos: TravelPhoto[] = [
   {

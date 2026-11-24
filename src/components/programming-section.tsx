@@ -37,7 +37,7 @@ export function ProgrammingSection() {
       aria-labelledby="programming-title"
     >
       <div className="section-label">
-        <span className="eyebrow">06 / A CURIOUS MIND</span>
+        <span className="eyebrow">A CURIOUS MIND</span>
         <span className="eyebrow">PROGRAMMING · PEOPLE · CYBERSECURITY</span>
       </div>
       <div className="section-heading programming-heading">

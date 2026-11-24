@@ -205,21 +205,16 @@ export function EditingStory() {
       className="editing-story"
       aria-labelledby="editing-story-title"
     >
-      <div className="section-label">
-        <span className="eyebrow">BEHIND THE FRAME</span>
-        <span className="eyebrow">A LOOK INSIDE THE EDIT</span>
-      </div>
       <div className="editing-heading">
         <h3 id="editing-story-title">
-          First, I see a frame.
-          <br />
-          <em>Then, the possibilities.</em>
+          Behind <em>the edit.</em>
         </h3>
-        <p>
-          The little notes in my head
-          <br />
-          before I touch a slider.
-        </p>
+        <figure className="editing-quote">
+          <blockquote>
+            “To see clearly is poetry, prophecy, and religion all in one.”
+          </blockquote>
+          <figcaption>John Ruskin, <cite>Modern Painters</cite></figcaption>
+        </figure>
       </div>
       <div className="editing-layout">
         <div>

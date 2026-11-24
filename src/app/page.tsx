@@ -21,72 +21,29 @@ export default function Home() {
       <Hero />
       <main id="main">
         <section
-          id="about"
-          className="about section-pad"
-          aria-labelledby="about-title"
-        >
-          <div className="section-label">
-            <span className="eyebrow">01 / A LITTLE ABOUT ME</span>
-          </div>
-          <Reveal>
-            <h2 id="about-title" className="statement">
-              I figure things out.
-              <br />
-              I bring ideas to life.
-              <br />
-              <em>I keep exploring.</em>
-            </h2>
-          </Reveal>
-          <div className="about-bottom">
-            <div>
-              <span className="eyebrow">A FEW WORDS. A BIGGER PICTURE.</span>
-              <p className="profile-lead">{profile.introduction[0]}</p>
-            </div>
-            <div>
-              {profile.introduction.slice(1).map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-              <a href="#projects" className="text-link dark-link">
-                See what I’m creating <Arrow />
-              </a>
-            </div>
-          </div>
-          <Reveal className="profile-pillars">
-            {profile.pillars.map((pillar, index) => (
-              <article key={pillar.title}>
-                <span className="eyebrow">0{index + 1}</span>
-                <h3>{pillar.title}</h3>
-                <p>{pillar.description}</p>
-              </article>
-            ))}
-          </Reveal>
-        </section>
-
-        <section
           id="work"
           className="work section-pad"
           aria-labelledby="work-title"
         >
-          <div className="section-label">
-            <span className="eyebrow">02 / THROUGH MY EYES</span>
-            <span className="eyebrow">PHOTOGRAPHY & VISUAL STORIES</span>
-          </div>
-          <Reveal className="section-heading">
-            <h2 id="work-title">
-              The world,
-              <br />
-              <em>as I see it.</em>
-            </h2>
-            <p>
-              Small moments. Wide-open spaces.
-              <br />A reason to look a little closer.
-            </p>
+          <Reveal className="section-heading work-heading">
+            <h2 id="work-title">Selected <em>photography.</em></h2>
           </Reveal>
-          <a className="text-link editing-jump" href="#how-i-see">
-            How I think about an edit <Arrow direction="down" />
-          </a>
           <Gallery />
           <EditingStory />
+        </section>
+
+        <section
+          id="about"
+          className="about section-pad"
+          aria-labelledby="about-title"
+        >
+          <Reveal>
+            <h2 id="about-title" className="statement">Behind the camera.</h2>
+            <p className="profile-lead">{profile.introduction}</p>
+            <a href="#projects" className="text-link">
+              See my other projects <Arrow />
+            </a>
+          </Reveal>
         </section>
 
         <TravelSection />
@@ -101,7 +58,7 @@ export default function Home() {
           aria-labelledby="contact-title"
         >
           <div className="section-label">
-            <span className="eyebrow">08 / THE NEXT CHAPTER</span>
+            <span className="eyebrow">THE NEXT CHAPTER</span>
             <span className="eyebrow">
               <i className="status-dot" /> STARTS WITH A CONVERSATION
             </span>
