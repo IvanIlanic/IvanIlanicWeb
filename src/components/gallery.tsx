@@ -142,7 +142,7 @@ export function Gallery() {
           className="text-link gallery-browse gallery-expand"
           onClick={() => setShowAll(true)}
         >
-          Show all {photographs.length} photographs
+          View all {photographs.length} photos
         </button>
       )}
       <dialog

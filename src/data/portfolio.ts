@@ -18,9 +18,8 @@ export type Photograph = {
 
 // Personal photographs supplied by Ivan. Keep dimensions in sync with new files
 // so each preview preserves the original composition without a forced crop.
-const featuredPhotographs: Photograph[] = [
+const individuallyCaptionedPhotographs: Omit<Photograph, "id">[] = [
   {
-    id: "01",
     title: "Chasing the last light",
     category: "Automotive",
     src: "/images/Gallery/Carmeet6-116.jpg",
@@ -31,7 +30,6 @@ const featuredPhotographs: Photograph[] = [
     credit: "Ivan Ilanić",
   },
   {
-    id: "02",
     title: "A little rhythm behind the bar",
     category: "Events",
     src: "/images/Gallery/Cocktailweek-07.jpg",
@@ -42,7 +40,6 @@ const featuredPhotographs: Photograph[] = [
     credit: "Ivan Ilanić",
   },
   {
-    id: "03",
     title: "Sexy looking fellow",
     category: "Portraits",
     src: "/images/Gallery/DSC06136.jpg",
@@ -53,7 +50,6 @@ const featuredPhotographs: Photograph[] = [
     credit: "Ivan Ilanić",
   },
   {
-    id: "04",
     title: "Amazed by nature",
     category: "Events",
     src: "/images/Gallery/MicroConf2026-03.jpg",
@@ -64,7 +60,6 @@ const featuredPhotographs: Photograph[] = [
     credit: "Ivan Ilanić",
   },
   {
-    id: "05",
     title: "In good company",
     category: "Events",
     src: "/images/Gallery/TravelPerlan-02.jpg",
@@ -119,7 +114,6 @@ const gallerySeries: GallerySeries[] = [
     location: "Cocktail week",
     frames: [
       ["Cocktailweek-02.jpg", 2088, 3132, "Ready to pour", "A bartender standing behind rows of bottles and metal bar tools"],
-      ["Cocktailweek-05.jpg", 2641, 3961, "Table for two", "Two people talking over drinks in a dark room"],
       ["Cocktailweek-06.jpg", 2803, 4205, "At the table", "Three guests leaning in around a candlelit table"],
       ["Cocktailweek-11.jpg", 4203, 6304, "Across the bar", "A bartender framed by blurred silhouettes in the foreground"],
     ],
@@ -138,7 +132,6 @@ const gallerySeries: GallerySeries[] = [
     frames: [
       ["MicroConf2026-14.jpg", 4672, 7008, "Across the boardwalk", "Two hikers in orange and green jackets cross a wooden footpath"],
       ["MicroConf2026-30.jpg", 4672, 7008, "On the rocky path", "A group in outdoor jackets walks up a rocky trail"],
-      ["MicroConf2026-34.jpg", 4672, 7008, "The climb", "Hikers in waterproof jackets pick their way up a rocky slope"],
       ["MicroConf2026-39.jpg", 7008, 4672, "Looking out", "Two hikers look across a wide valley under a gray sky"],
       ["MicroConf2026-53.jpg", 6612, 4408, "A pause on the trail", "A group in hiking jackets stands beside a building with a hillside behind them"],
       ["MicroConf2026-56.jpg", 4240, 6360, "Bright jackets, gray skies", "Hikers in bright orange and yellow jackets stand on a paved path"],
@@ -187,7 +180,6 @@ const gallerySeries: GallerySeries[] = [
       ["TravelPerlan-12.jpg", 4672, 7008, "An evening conversation", "Two guests talk beside angled windows at an evening gathering"],
       ["TravelPerlan-13.jpg", 4672, 3115, "Across the table", "A guest in glasses and a plaid shirt talks with another diner"],
       ["TravelPerlan-17.jpg", 6162, 4108, "A shared story", "Four diners gather around a table with drinks"],
-      ["TravelPerlan-20.jpg", 4672, 7008, "Among the guests", "A guest wearing glasses stands among other attendees in a dim room"],
       ["TravelPerlan-22.jpg", 4413, 2942, "Blue hour at dinner", "A guest framed by two diners sits beside a window at dusk"],
       ["TravelPerlan-24.jpg", 4672, 3115, "Dinner by the windows", "A group talks around a long dinner table beside angled windows"],
       ["TravelPerlan-34.jpg", 4672, 7008, "A crowded table", "Guests share dinner at a table beside a wall of greenery"],
@@ -217,24 +209,39 @@ const gallerySeries: GallerySeries[] = [
   },
 ];
 
-export const featuredPhotographCount = featuredPhotographs.length;
-export const photographs: Photograph[] = [
-  ...featuredPhotographs,
-  ...gallerySeries
-    .flatMap(({ category, location, frames }) =>
-      frames.map(([filename, width, height, title, alt]) => ({
-        src: `/images/Gallery/${filename}`,
-        category,
-        location,
-        width,
-        height,
-        title,
-        alt,
-        credit: "Ivan Ilanić",
-      })),
-    )
-    .map((frame, index) => ({
-      ...frame,
-      id: String(featuredPhotographCount + index + 1).padStart(2, "0"),
-    })),
+const featuredFilenames = [
+  "Carmeet6-116.jpg",
+  "Cocktailweek-07.jpg",
+  "Premier League-09.jpg",
+  "MicroConf2026-39.jpg",
+  "TravelPerlan-22.jpg",
 ];
+const featuredOrder = new Map(
+  featuredFilenames.map((filename, index) => [`/images/Gallery/${filename}`, index]),
+);
+export const featuredPhotographCount = featuredFilenames.length;
+
+export const photographs: Photograph[] = [
+  ...individuallyCaptionedPhotographs,
+  ...gallerySeries.flatMap(({ category, location, frames }) =>
+    frames.map(([filename, width, height, title, alt]) => ({
+      src: `/images/Gallery/${filename}`,
+      category,
+      location,
+      width,
+      height,
+      title,
+      alt,
+      credit: "Ivan Ilanić",
+    })),
+  ),
+]
+  .sort(
+    (a, b) =>
+      (featuredOrder.get(a.src) ?? featuredPhotographCount) -
+      (featuredOrder.get(b.src) ?? featuredPhotographCount),
+  )
+  .map((frame, index) => ({
+    ...frame,
+    id: String(index + 1).padStart(2, "0"),
+  }));
