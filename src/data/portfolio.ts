@@ -1,4 +1,5 @@
 export const photographCategories = [
+  "Restaurant & bar",
   "Automotive",
   "Portraits",
   "Events",
@@ -31,7 +32,7 @@ const individuallyCaptionedPhotographs: Omit<Photograph, "id">[] = [
   },
   {
     title: "A little rhythm behind the bar",
-    category: "Events",
+    category: "Restaurant & bar",
     src: "/images/Gallery/Cocktailweek-07.jpg",
     alt: "A smiling bartender holding two metal cocktail shakers behind a colorful bar",
     width: 3044,
@@ -87,7 +88,7 @@ type GallerySeries = {
 
 const gallerySeries: GallerySeries[] = [
   {
-    category: "Events",
+    category: "Restaurant & bar",
     location: "Bruno Bar",
     frames: [
       ["Bruno Bar Edit-03.jpg", 4481, 6721, "By candlelight", "A candle and glassware on a dark wooden table"],
@@ -110,7 +111,7 @@ const gallerySeries: GallerySeries[] = [
     ],
   },
   {
-    category: "Events",
+    category: "Restaurant & bar",
     location: "Cocktail week",
     frames: [
       ["Cocktailweek-02.jpg", 2088, 3132, "Ready to pour", "A bartender standing behind rows of bottles and metal bar tools"],
@@ -119,7 +120,7 @@ const gallerySeries: GallerySeries[] = [
     ],
   },
   {
-    category: "Events",
+    category: "Restaurant & bar",
     location: "Holt",
     frames: [
       ["HoltFood-12.jpg", 4672, 7008, "From above", "An overhead view of drinks and small plates on a dark table"],
@@ -183,6 +184,12 @@ const gallerySeries: GallerySeries[] = [
       ["TravelPerlan-22.jpg", 4413, 2942, "Blue hour at dinner", "A guest framed by two diners sits beside a window at dusk"],
       ["TravelPerlan-24.jpg", 4672, 3115, "Dinner by the windows", "A group talks around a long dinner table beside angled windows"],
       ["TravelPerlan-34.jpg", 4672, 7008, "A crowded table", "Guests share dinner at a table beside a wall of greenery"],
+    ],
+  },
+  {
+    category: "Restaurant & bar",
+    location: "Perlan",
+    frames: [
       ["TravelPerlan-36.jpg", 4672, 7008, "Warm tones", "A close-up of an orange dish with soft lights in the background"],
       ["TravelPerlan-37.jpg", 4672, 7008, "At the table’s edge", "A close-up of a dish with green garnish against a softly lit background"],
     ],
@@ -210,11 +217,11 @@ const gallerySeries: GallerySeries[] = [
 ];
 
 const featuredFilenames = [
-  "Carmeet6-116.jpg",
+  "Bruno Bar Edit-13.jpg",
   "Cocktailweek-07.jpg",
-  "Premier League-09.jpg",
+  "HoltFood-12.jpg",
+  "Carmeet6-116.jpg",
   "MicroConf2026-39.jpg",
-  "TravelPerlan-22.jpg",
 ];
 const featuredOrder = new Map(
   featuredFilenames.map((filename, index) => [`/images/Gallery/${filename}`, index]),
