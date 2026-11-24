@@ -333,12 +333,19 @@ export function TravelGlobe() {
       className="travel-map"
       aria-labelledby="travel-map-title"
     >
+      <div className="section-label">
+        <span className="eyebrow">A FEW PINS IN A BIG WORLD</span>
+        <span className="eyebrow">STILL PLENTY LEFT TO SEE</span>
+      </div>
       <div className="travel-map-heading">
         <h3 id="travel-map-title">
           Places that became
           <br />
           <em>part of my story.</em>
         </h3>
+        <p>
+          Select a place to explore it on the globe.
+        </p>
       </div>
       <div className="travel-map-layout">
         <div className="travel-globe-panel">

@@ -4,8 +4,8 @@ import { useRef, useState } from "react";
 import { Arrow } from "./icons";
 
 const links = [
-  ["Photography", "#work"],
   ["About", "#about"],
+  ["Selected work", "#work"],
   ["Travel", "#journal"],
   ["Diving", "#diving"],
   ["Snowboarding", "#snowboarding"],

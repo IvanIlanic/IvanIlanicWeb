@@ -7,6 +7,7 @@ import { usePointerParallax } from "@/hooks/use-pointer-parallax";
 import { Arrow } from "./icons";
 import { Reveal } from "./reveal";
 import { Navigation } from "./navigation";
+import { profile } from "@/data/profile";
 
 const heroPhoto = {
   src: "/images/IvanHero.jpg",
@@ -47,6 +48,9 @@ export function Hero() {
       <Navigation />
       <motion.div className="hero-center" style={parallax.foreground}>
         <Reveal>
+          <p className="eyebrow hero-kicker">
+            {profile.roles.join(". ").toUpperCase()}.
+          </p>
           <h1 id="hero-title" aria-label="Ivan Ilanić">
             <span className="hero-lettering" aria-hidden="true">
               IVAN
@@ -58,10 +62,15 @@ export function Hero() {
         </Reveal>
       </motion.div>
       <div className="hero-footer">
+        <p className="hero-intro">
+          Solving problems.
+          <br />
+          Creating. Exploring.
+        </p>
         <a
-          href="#work"
+          href="#about"
           className="hero-scroll"
-          aria-label="Browse selected photography"
+          aria-label="Discover more about Ivan"
         >
           <span className="eyebrow">DISCOVER</span>
           <Arrow direction="down" />

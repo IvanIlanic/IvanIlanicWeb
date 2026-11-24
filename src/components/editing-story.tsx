@@ -205,9 +205,15 @@ export function EditingStory() {
       className="editing-story"
       aria-labelledby="editing-story-title"
     >
+      <div className="section-label">
+        <span className="eyebrow">BEHIND THE FRAME</span>
+        <span className="eyebrow">A LOOK INSIDE THE EDIT</span>
+      </div>
       <div className="editing-heading">
         <h3 id="editing-story-title">
-          Behind <em>the edit.</em>
+          First, I see a frame.
+          <br />
+          <em>Then, the possibilities.</em>
         </h3>
         <figure className="section-quote">
           <blockquote>

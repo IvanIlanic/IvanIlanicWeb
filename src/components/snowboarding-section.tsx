@@ -10,7 +10,7 @@ export function SnowboardingSection() {
       aria-labelledby="snowboarding-title"
     >
       <div className="section-label">
-        <span className="eyebrow">CHASING WINTER</span>
+        <span className="eyebrow">05 / CHASING WINTER</span>
         <span className="eyebrow">SNOWBOARDING · A LONG-AWAITED LOVE</span>
       </div>
       <Reveal className="section-heading snow-heading">
