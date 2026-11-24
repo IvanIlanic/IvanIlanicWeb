@@ -39,7 +39,7 @@ export function Navigation() {
         </span>
       </a>
       <span className="header-edition eyebrow">
-        INDEPENDENT MIND. OPEN HORIZONS.
+        "Giving up is not in the blood, sir. ~  Nirmal "Nimsdai" Purja"
       </span>
       <button
         ref={toggle}
