@@ -2522,7 +2522,7 @@ em {
   inset: 0;
   display: grid;
   align-items: center;
-  padding: 0 13vw 0 4vw;
+  padding: 0 4vw;
   pointer-events: none;
 }
 .hero-center > div {
@@ -2565,42 +2565,6 @@ em {
   padding-left: 0.95em;
   margin-top: 34px;
 }
-.scene-nav {
-  position: absolute;
-  right: var(--gutter);
-  top: 50%;
-  transform: translateY(-50%);
-  width: 112px;
-}
-.scene-nav button {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 13px;
-  padding: 18px 0 16px;
-  width: 100%;
-  border-bottom: 1px solid #ffffff38;
-  color: #c2c2c2;
-  font-size: 12px;
-  letter-spacing: 0.17em;
-  text-transform: uppercase;
-  background: transparent;
-  transition:
-    color 0.2s,
-    border-color 0.2s;
-}
-.scene-nav button[aria-pressed="true"] {
-  color: #fff;
-  border-bottom-color: var(--accent);
-}
-.scene-nav button:hover {
-  color: white;
-}
-.scene-number {
-  font-size: 8px;
-  letter-spacing: 0.03em;
-  opacity: 0.65;
-}
 .hero-footer {
   position: absolute;
   bottom: 38px;
@@ -2639,22 +2603,6 @@ em {
 .hero-scroll:hover svg {
   translate: 0 5px;
 }
-.hero-index {
-  text-align: right;
-}
-.hero-index > p {
-  font-size: 8px;
-  letter-spacing: 0.1em;
-  margin-bottom: 16px;
-}
-.frame-counter {
-  font-size: 12px;
-  letter-spacing: 0.1em;
-}
-.frame-counter span {
-  color: #b5b5b5;
-  font-size: 9px;
-}
 .wordmark {
   font-size: 24px;
   letter-spacing: -0.07em;
@@ -2684,19 +2632,6 @@ em {
 @media (max-width: 900px) {
   .header-edition {
     display: none;
-  }
-  .hero-center {
-    padding-right: 15vw;
-  }
-  .scene-nav {
-    width: 82px;
-  }
-  .scene-nav button {
-    font-size: 10px;
-    gap: 8px;
-  }
-  .hero-index > p {
-    max-width: 180px;
   }
 }
 @media (max-width: 600px) {
@@ -2735,29 +2670,11 @@ em {
     padding-left: 0.8em;
     margin-top: 26px;
   }
-  .scene-nav {
-    top: auto;
-    bottom: 168px;
-    left: var(--gutter);
-    right: var(--gutter);
-    transform: none;
-    width: auto;
-    display: flex;
-    gap: 20px;
-  }
-  .scene-nav button {
-    justify-content: center;
-    font-size: 10px;
-    padding: 12px 0;
-  }
   .hero-footer {
     bottom: 26px;
   }
   .hero-intro {
     font-size: 11px;
-  }
-  .hero-index > p {
-    display: none;
   }
   .hero-scroll {
     bottom: 76px;
@@ -2766,15 +2683,11 @@ em {
   .hero-scroll .eyebrow {
     display: none;
   }
-  .hero-index {
-    padding-bottom: 3px;
-  }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-image {
     animation: none;
   }
-  .scene-nav button,
   .hero-scroll svg {
     transition: none;
   }

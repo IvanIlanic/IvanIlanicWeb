@@ -155,18 +155,7 @@ export default function Home() {
         </div>
         <details id="image-credits" className="credits">
           <summary>Photography & image credits</summary>
-          <p>
-            Selected gallery photography by Ivan Ilanić. The alternate hero
-            scenes use design samples.
-            Lake:{" "}
-            <a href="https://unsplash.com/@tjholowaychuk">Tj Holowaychuk</a>.
-            Ocean: <a href="https://unsplash.com/@yucar">YUCAR FotoGrafik</a>.
-            Via Unsplash and the{" "}
-            <a href="https://github.com/timlrx/tailwind-nextjs-starter-blog">
-              Tailwind Next.js Starter Blog
-            </a>
-            .
-          </p>
+          <p>Gallery photography by Ivan Ilanić.</p>
         </details>
       </footer>
     </>
