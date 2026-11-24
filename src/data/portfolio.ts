@@ -18,7 +18,7 @@ export type Photograph = {
 
 // Personal photographs supplied by Ivan. Keep dimensions in sync with new files
 // so each preview preserves the original composition without a forced crop.
-export const photographs: Photograph[] = [
+const featuredPhotographs: Photograph[] = [
   {
     id: "01",
     title: "Chasing the last light",
@@ -74,4 +74,167 @@ export const photographs: Photograph[] = [
     location: "A candid conversation",
     credit: "Ivan Ilanić",
   },
+];
+
+type GalleryFrame = [
+  filename: string,
+  width: number,
+  height: number,
+  title: string,
+  alt: string,
+];
+
+type GallerySeries = {
+  category: Photograph["category"];
+  location: string;
+  frames: GalleryFrame[];
+};
+
+const gallerySeries: GallerySeries[] = [
+  {
+    category: "Events",
+    location: "Bruno Bar",
+    frames: [
+      ["Bruno Bar Edit-03.jpg", 4481, 6721, "By candlelight", "A candle and glassware on a dark wooden table"],
+      ["Bruno Bar Edit-11.jpg", 6917, 4508, "A seat at the bar", "A shaded lamp beside red seating and illuminated bottles"],
+      ["Bruno Bar Edit-12.jpg", 6655, 4437, "Behind the counter", "A bartender beneath shelves filled with brightly lit bottles"],
+      ["Bruno Bar Edit-13.jpg", 6449, 4342, "Across the room", "A wide view of the bar with warm pendant lights and mirrored walls"],
+      ["Bruno Bar Edit-18.jpg", 4672, 7008, "In amber light", "A row of liquor bottles lit from below along a shelf"],
+      ["Bruno Bar Edit-25.jpg", 5781, 3936, "Through the leaves", "Dark green leaves against a warmly lit interior"],
+      ["Bruno Bar Edit-37.jpg", 6807, 4163, "Top shelf", "Colorful bottle labels viewed from below"],
+      ["Bruno Bar Edit-43.jpg", 6952, 4635, "A quiet corner", "Red seating and a table lamp with the bar blurred behind them"],
+    ],
+  },
+  {
+    category: "Automotive",
+    location: "Car meet",
+    frames: [
+      ["Carmeet6-007.jpg", 4672, 7008, "After dark", "The illuminated taillights of a yellow car against a black background"],
+      ["Carmeet6-009.jpg", 4232, 6348, "Under the lamps", "A car parked beside a concrete wall under bright exterior lamps"],
+      ["Carmeet6-183.jpg", 6231, 4154, "Red and blue", "A blue sports car beneath a red-lit storefront"],
+    ],
+  },
+  {
+    category: "Events",
+    location: "Cocktail week",
+    frames: [
+      ["Cocktailweek-02.jpg", 2088, 3132, "Ready to pour", "A bartender standing behind rows of bottles and metal bar tools"],
+      ["Cocktailweek-05.jpg", 2641, 3961, "Table for two", "Two people talking over drinks in a dark room"],
+      ["Cocktailweek-06.jpg", 2803, 4205, "At the table", "Three guests leaning in around a candlelit table"],
+      ["Cocktailweek-11.jpg", 4203, 6304, "Across the bar", "A bartender framed by blurred silhouettes in the foreground"],
+    ],
+  },
+  {
+    category: "Events",
+    location: "Holt",
+    frames: [
+      ["HoltFood-12.jpg", 4672, 7008, "From above", "An overhead view of drinks and small plates on a dark table"],
+      ["HoltFood-14.jpg", 4672, 7008, "At the pass", "A hand reaches over a table of fries and plated food"],
+    ],
+  },
+  {
+    category: "Events",
+    location: "MicroConf 2026",
+    frames: [
+      ["MicroConf2026-14.jpg", 4672, 7008, "Across the boardwalk", "Two hikers in orange and green jackets cross a wooden footpath"],
+      ["MicroConf2026-30.jpg", 4672, 7008, "On the rocky path", "A group in outdoor jackets walks up a rocky trail"],
+      ["MicroConf2026-34.jpg", 4672, 7008, "The climb", "Hikers in waterproof jackets pick their way up a rocky slope"],
+      ["MicroConf2026-39.jpg", 7008, 4672, "Looking out", "Two hikers look across a wide valley under a gray sky"],
+      ["MicroConf2026-53.jpg", 6612, 4408, "A pause on the trail", "A group in hiking jackets stands beside a building with a hillside behind them"],
+      ["MicroConf2026-56.jpg", 4240, 6360, "Bright jackets, gray skies", "Hikers in bright orange and yellow jackets stand on a paved path"],
+    ],
+  },
+  {
+    category: "Portraits",
+    location: "Premier League",
+    frames: [
+      ["Premier League-09.jpg", 4217, 4217, "Inside the circle", "A person in a cap in front of a glowing red and blue dartboard"],
+    ],
+  },
+  {
+    category: "Events",
+    location: "Premier League",
+    frames: [
+      ["Premier League-11.jpg", 4672, 4672, "Lining up the shot", "A pool player bends over a red table to aim a cue"],
+    ],
+  },
+  {
+    category: "Automotive",
+    location: "Rescue vehicle exhibition",
+    frames: [
+      ["RescueVExp-28.jpg", 6139, 4093, "Rescue lineup", "Orange and black emergency vehicles parked in a row"],
+      ["RescueVExp-51.jpg", 4181, 6271, "High visibility", "A rescue vehicle with red and yellow chevrons beneath a glass building"],
+      ["RescueVExp-55.jpg", 4179, 6268, "On wet pavement", "A white off-road rescue truck parked on a rain-slick street"],
+      ["RescueVExp-60.jpg", 4672, 7008, "In the side mirror", "Emergency vehicles reflected in a vehicle side mirror"],
+    ],
+  },
+  {
+    category: "Events",
+    location: "Conference",
+    frames: [
+      ["TravelDay1-04.jpg", 7008, 4672, "From the audience", "A speaker at a podium in front of a projected slide"],
+      ["TravelDay1-09.jpg", 4672, 3115, "A warm welcome", "A smiling conference guest raises a hand in a crowded room"],
+      ["TravelDay1-10.jpg", 4672, 3115, "Between sessions", "Conference guests talk in a room with tall curtained windows"],
+      ["TravelDay1-19.jpg", 4271, 6407, "Applause", "An audience member claps from a seat among other attendees"],
+      ["TravelDay1-26.jpg", 7008, 4672, "A full room", "Rows of seated attendees face a speaker in a bright conference hall"],
+    ],
+  },
+  {
+    category: "Events",
+    location: "Perlan",
+    frames: [
+      ["TravelPerlan-08.jpg", 6429, 4286, "Around the table", "Two guests with glasses sit at a dinner table beside dark windows"],
+      ["TravelPerlan-12.jpg", 4672, 7008, "An evening conversation", "Two guests talk beside angled windows at an evening gathering"],
+      ["TravelPerlan-13.jpg", 4672, 3115, "Across the table", "A guest in glasses and a plaid shirt talks with another diner"],
+      ["TravelPerlan-17.jpg", 6162, 4108, "A shared story", "Four diners gather around a table with drinks"],
+      ["TravelPerlan-20.jpg", 4672, 7008, "Among the guests", "A guest wearing glasses stands among other attendees in a dim room"],
+      ["TravelPerlan-22.jpg", 4413, 2942, "Blue hour at dinner", "A guest framed by two diners sits beside a window at dusk"],
+      ["TravelPerlan-24.jpg", 4672, 3115, "Dinner by the windows", "A group talks around a long dinner table beside angled windows"],
+      ["TravelPerlan-34.jpg", 4672, 7008, "A crowded table", "Guests share dinner at a table beside a wall of greenery"],
+      ["TravelPerlan-36.jpg", 4672, 7008, "Warm tones", "A close-up of an orange dish with soft lights in the background"],
+      ["TravelPerlan-37.jpg", 4672, 7008, "At the table’s edge", "A close-up of a dish with green garnish against a softly lit background"],
+    ],
+  },
+  {
+    category: "Automotive",
+    location: "Car study",
+    frames: [
+      ["car1-148.jpg", 7008, 4672, "A line of light", "Bright red and amber taillights on a car in the dark"],
+      ["car1-374.jpg", 4410, 6615, "Yellow in the dark", "A yellow car viewed from above with people beside it"],
+      ["car1-384.jpg", 4511, 6767, "Headlights on", "A red car faces the camera with bright headlights in a dark garage"],
+    ],
+  },
+  {
+    category: "Events",
+    location: "Classroom",
+    frames: [
+      ["car1-204.jpg", 7008, 4672, "In the classroom", "Three people sit at a row of desks in a sunlit classroom"],
+      ["car1-223.jpg", 7008, 4672, "At the whiteboard", "A hand draws a diagram with a marker on a whiteboard"],
+      ["car1-226.jpg", 7008, 4672, "Working it out", "A group collaborates around a table in a classroom"],
+      ["car1-232.jpg", 7008, 4672, "Side by side", "Three people work at laptops along a row of desks"],
+      ["car1-238.jpg", 7008, 4672, "A shared screen", "People smile and lean in around a laptop at a table"],
+    ],
+  },
+];
+
+export const featuredPhotographCount = featuredPhotographs.length;
+export const photographs: Photograph[] = [
+  ...featuredPhotographs,
+  ...gallerySeries
+    .flatMap(({ category, location, frames }) =>
+      frames.map(([filename, width, height, title, alt]) => ({
+        src: `/images/Gallery/${filename}`,
+        category,
+        location,
+        width,
+        height,
+        title,
+        alt,
+        credit: "Ivan Ilanić",
+      })),
+    )
+    .map((frame, index) => ({
+      ...frame,
+      id: String(featuredPhotographCount + index + 1).padStart(2, "0"),
+    })),
 ];

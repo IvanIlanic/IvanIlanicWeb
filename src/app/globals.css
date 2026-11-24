@@ -256,9 +256,14 @@ em {
   margin-left: 6px;
   vertical-align: super;
 }
-.gallery-hint {
-  color: var(--muted);
-  font-size: 8px;
+.gallery-browse {
+  color: var(--paper);
+  background: none;
+  padding-inline: 0;
+  text-align: left;
+}
+.gallery-expand {
+  margin-top: 34px;
 }
 .photo-grid {
   display: grid;
@@ -2186,12 +2191,21 @@ em {
 .lightbox {
   color: var(--paper);
   background: #141414;
-  border: 1px solid var(--line);
-  padding: 24px;
-  width: min(1100px, 94vw);
-  max-width: 94vw;
-  max-height: 95svh;
-  margin: auto;
+  border: 0;
+  padding: max(12px, env(safe-area-inset-top))
+    max(12px, env(safe-area-inset-right))
+    max(12px, env(safe-area-inset-bottom))
+    max(12px, env(safe-area-inset-left));
+  width: 100%;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+}
+.lightbox[open] {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 8px;
 }
 .lightbox::backdrop {
   background: #080808ed;
@@ -2207,7 +2221,9 @@ em {
 .lightbox button {
   background: none;
   padding: 9px;
-  font-size: 12px;
+  min-width: 44px;
+  min-height: 44px;
+  font-size: 14px;
 }
 .lightbox-top button span {
   margin-left: 15px;
@@ -2215,8 +2231,7 @@ em {
 }
 .lightbox-image {
   position: relative;
-  height: 65svh;
-  margin: 15px 0 20px;
+  touch-action: pan-y pinch-zoom;
 }
 .lightbox-image img {
   object-fit: contain;
@@ -2229,7 +2244,7 @@ em {
 }
 .lightbox-bottom p {
   color: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
   margin-top: 5px;
 }
 .lightbox-bottom a {
@@ -2254,8 +2269,8 @@ em {
     padding-top: 70px;
     padding-bottom: 70px;
   }
-  .gallery-hint {
-    display: none;
+  .gallery-toolbar {
+    flex-wrap: wrap;
   }
   .photo-entry-1 {
     margin-top: 90px;
@@ -2360,17 +2375,8 @@ em {
   .footer-row .text-link {
     font-size: 9px;
   }
-  .lightbox {
-    padding: 15px;
-  }
-  .lightbox-image {
-    height: 58svh;
-  }
   .lightbox-bottom h3 {
     font-size: 14px;
-  }
-  .lightbox-bottom p {
-    font-size: 9px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

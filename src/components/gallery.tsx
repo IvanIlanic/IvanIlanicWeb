@@ -2,7 +2,11 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { photographCategories, photographs } from "@/data/portfolio";
+import {
+  featuredPhotographCount,
+  photographCategories,
+  photographs,
+} from "@/data/portfolio";
 import { Arrow } from "./icons";
 import { Reveal } from "./reveal";
 
@@ -11,29 +15,26 @@ const formatCount = (count: number) => String(count).padStart(2, "0");
 
 export function Gallery() {
   const [filter, setFilter] = useState<(typeof filters)[number]>("All frames");
+  const [showAll, setShowAll] = useState(false);
   const [active, setActive] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const dialog = useRef<HTMLDialogElement>(null);
   const closeButton = useRef<HTMLButtonElement>(null);
+  const firstAdditionalPhoto = useRef<HTMLButtonElement>(null);
   const previousFocus = useRef<HTMLElement | null>(null);
-  const photo = photographs[active];
-  const visible = photographs.filter(
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
+  const collection = photographs.filter(
     (p) => filter === "All frames" || p.category === filter,
   );
+  const photo = collection[active];
+  const visible =
+    filter === "All frames" && !showAll
+      ? collection.slice(0, featuredPhotographCount)
+      : collection;
 
   useEffect(() => {
-    const node = dialog.current;
-    if (!node) return;
-    const restore = () => {
-      setIsOpen(false);
-      previousFocus.current?.focus();
-    };
-    node.addEventListener("close", restore);
-    return () => {
-      node.removeEventListener("close", restore);
-      document.body.style.overflow = "";
-    };
-  }, []);
+    if (showAll) firstAdditionalPhoto.current?.focus();
+  }, [showAll]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -44,8 +45,8 @@ export function Gallery() {
     };
   }, [isOpen]);
 
-  function openPhoto(index: number) {
-    previousFocus.current = document.activeElement as HTMLElement;
+  function openPhoto(index: number, trigger: HTMLButtonElement) {
+    previousFocus.current = trigger;
     setActive(index);
     dialog.current?.showModal();
     setIsOpen(true);
@@ -53,7 +54,7 @@ export function Gallery() {
   }
   function changePhoto(delta: number) {
     setActive(
-      (index) => (index + delta + photographs.length) % photographs.length,
+      (index) => (index + delta + collection.length) % collection.length,
     );
   }
 
@@ -64,7 +65,10 @@ export function Gallery() {
           {filters.map((f) => (
             <button
               key={f}
-              onClick={() => setFilter(f)}
+              onClick={() => {
+                setFilter(f);
+                setActive(0);
+              }}
               aria-pressed={filter === f}
             >
               {f}
@@ -78,16 +82,28 @@ export function Gallery() {
             </button>
           ))}
         </div>
-        <span className="eyebrow gallery-hint">
-          SELECTED PHOTOGRAPHY BY IVAN ILANIĆ
-        </span>
+        <button
+          className="text-link gallery-browse"
+          onClick={(event) => {
+            setFilter("All frames");
+            openPhoto(0, event.currentTarget);
+          }}
+          aria-haspopup="dialog"
+        >
+          Browse all {photographs.length} fullscreen
+        </button>
       </div>
       <div className="photo-grid">
         {visible.map((p, i) => (
           <Reveal key={p.id} className={`photo-entry photo-entry-${i % 4}`}>
             <button
+              ref={
+                filter === "All frames" && i === featuredPhotographCount
+                  ? firstAdditionalPhoto
+                  : undefined
+              }
               className="photo-button"
-              onClick={() => openPhoto(photographs.indexOf(p))}
+              onClick={(event) => openPhoto(i, event.currentTarget)}
               aria-label={`View ${p.title}`}
               aria-haspopup="dialog"
             >
@@ -121,10 +137,22 @@ export function Gallery() {
           </Reveal>
         ))}
       </div>
+      {filter === "All frames" && !showAll && (
+        <button
+          className="text-link gallery-browse gallery-expand"
+          onClick={() => setShowAll(true)}
+        >
+          Show all {photographs.length} photographs
+        </button>
+      )}
       <dialog
         ref={dialog}
         className="lightbox"
         aria-label="Photography viewer"
+        onClose={() => {
+          setIsOpen(false);
+          previousFocus.current?.focus();
+        }}
         onClick={(e) => {
           if (e.target === e.currentTarget) dialog.current?.close();
         }}
@@ -140,8 +168,8 @@ export function Gallery() {
         }}
       >
         <div className="lightbox-top">
-          <span className="eyebrow">
-            FRAME {photo.id} / {formatCount(photographs.length)}
+          <span className="eyebrow" aria-live="polite">
+            FRAME {formatCount(active + 1)} / {formatCount(collection.length)}
           </span>
           <button
             ref={closeButton}
@@ -153,13 +181,36 @@ export function Gallery() {
         </div>
         {isOpen && (
           <>
-            <div className="lightbox-image">
+            <div
+              className="lightbox-image"
+              onTouchStart={(event) => {
+                const { clientX, clientY } = event.touches[0];
+                touchStart.current = { x: clientX, y: clientY };
+              }}
+              onTouchCancel={() => {
+                touchStart.current = null;
+              }}
+              onTouchEnd={(event) => {
+                const start = touchStart.current;
+                touchStart.current = null;
+                if (!start) return;
+                const { clientX, clientY } = event.changedTouches[0];
+                const deltaX = clientX - start.x;
+                if (
+                  Math.abs(deltaX) > 45 &&
+                  Math.abs(deltaX) > Math.abs(clientY - start.y)
+                ) {
+                  changePhoto(deltaX < 0 ? 1 : -1);
+                }
+              }}
+            >
               <Image
                 key={photo.id}
                 src={photo.src}
                 alt={photo.alt}
                 fill
-                sizes="90vw"
+                sizes="100vw"
+                loading="eager"
               />
             </div>
             <div className="lightbox-bottom">
